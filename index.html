@@ -1,0 +1,915 @@
+<!--模板修改自https://tympanus.net/Development/ImageGridEffects/
+代码渣，各种东拼西凑，求大神轻喷-->
+<!DOCTYPE html>
+<html lang="zh-cn" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>西西的动效作品</title>
+	<link rel="shortcut icon" href="img/X.svg">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/style2.css" />
+	<script src="js/modernizr-custom.js"></script>
+	<style>
+		#element1 {
+			background-image: url('img/title.png');
+			width: 420px;
+			height: 90px;
+			position: absolute;
+			top: 2%;
+			left: 50%;
+			transform: translate(-50%, -2%) scale(0.9,0.9);
+			
+		}
+		#element1:hover {
+			animation: animation1 2.35s steps(1) infinite;
+		}
+		@keyframes animation1 {
+			0% { background-position: 0px 0px; }
+			2.17% { background-position: -420px 0px; }
+			4.35% { background-position: -840px 0px; }
+			6.52% { background-position: -1260px 0px; }
+			8.70% { background-position: 0px -90px; }
+			10.87% { background-position: -420px -90px; }
+			13.04% { background-position: -840px -90px; }
+			15.22% { background-position: -1260px -90px; }
+			17.39% { background-position: 0px -180px; }
+			19.57% { background-position: -420px -180px; }
+			21.74% { background-position: -840px -180px; }
+			23.91% { background-position: -1260px -180px; }
+			26.09% { background-position: 0px -270px; }
+			28.26% { background-position: -420px -270px; }
+			30.43% { background-position: -840px -270px; }
+			32.61% { background-position: -1260px -270px; }
+			34.78% { background-position: 0px -360px; }
+			36.96% { background-position: -420px -360px; }
+			39.13% { background-position: -840px -360px; }
+			41.30% { background-position: -1260px -360px; }
+			43.48% { background-position: 0px -450px; }
+			45.65% { background-position: -420px -450px; }
+			47.83% { background-position: -840px -450px; }
+			50.00% { background-position: -1260px -450px; }
+			52.17% { background-position: 0px -540px; }
+			54.35% { background-position: -420px -540px; }
+			56.52% { background-position: -840px -540px; }
+			58.70% { background-position: -1260px -540px; }
+			60.87% { background-position: 0px -630px; }
+			63.04% { background-position: -420px -630px; }
+			65.22% { background-position: -840px -630px; }
+			67.39% { background-position: -1260px -630px; }
+			69.57% { background-position: 0px -720px; }
+			71.74% { background-position: -420px -720px; }
+			73.91% { background-position: -840px -720px; }
+			76.09% { background-position: -1260px -720px; }
+			78.26% { background-position: 0px -810px; }
+			80.43% { background-position: -420px -810px; }
+			82.61% { background-position: -840px -810px; }
+			84.78% { background-position: -1260px -810px; }
+			86.96% { background-position: 0px -900px; }
+			89.13% { background-position: -420px -900px; }
+			91.30% { background-position: -840px -900px; }
+			93.48% { background-position: -1260px -900px; }
+			95.65% { background-position: 0px -990px; }
+			97.83% { background-position: -420px -990px; }
+			100.00% { background-position: -840px -990px; }
+		}
+	</style>
+</head>
+
+<body class="demo-2">
+	<div class="container">
+		<header class="codrops-header">
+			<div id="element1"></div>
+			<h1>  <br><span>点击缩略图查看动画，建议用电脑观看。</span></h1>
+			<a href="#" onclick="window.open('mailto:xixi@bigxixi.com');">联系方式:xixi@bigxixi.com</a>
+		</header>
+		<div class="content">
+			<div class="grid">
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-通知栏清理动效</h3>	
+					<a href="img/original/1.mp4" class="img-wrap"><img src="img/thumbs/1.png" alt="img06"/>
+
+						<div class="description description--grid">
+							<h3>猎豹清理大师-通知栏清理动效</h3>
+							<p>用户点击清理按钮后触发效果，通过吸气扇叶+粒子吸入伴随蒙层后通知条目逐条被吸入表现出“正在清理”的感觉。</p>
+							<p>整个清理过程动画加入震颤晃动的设计以表现“吸力强劲”，清理结束后迅速无缝转入结果页，熄灭蒙层并勾画出完成图标，传达出排尽毒素的清爽愉悦。</p>
+							<p>猎豹清理大师作为用户过亿的成熟产品，每一个新功能想要取得突破都是压力重重，而在动效的加持下，整个通知栏清理功能商业化转化率激增，成为猎豹清理大师新的收入增长点。</p>
+
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>清理</li>
+									<li>粒子</li>
+									<li>Material Design</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="800x600">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Sketch插件 - Sketch2AE</h3>
+					<a href="img/original/sk2ae.mp4" class="img-wrap"><img src="img/thumbs/sk2ae.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>Sketch插件 - Sketch2AE</h3>
+							<p>轻松导出skech文件中的切片到Adobe After Effect并自动定位。 </p>
+							<p>利用帧另存为Photoshop图层功能，还可以实现Sketch导出到Photoshop。</p>
+							<p onClick="window.open('https://github.com/bigxixi/Sketch2AE')" style="cursor:pointer;">项目地址:https://github.com/bigxixi/Sketch2AE</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>sketch</li>
+									<li>ae</li>
+									<li>ps</li>
+									<li>插件</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="350x624">
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CML 3D主题-Next Tech</h3>	
+					<a href="img/original/3.mp4" class="img-wrap"><img src="img/thumbs/3.jpg" alt="img08" />
+						<div class="description description--grid">
+							<h3>CML 3D主题-Next Tech</h3>
+							<p>作为全球用户量最多的安卓个性化APP，CM Launcher 3D（猎豹3D桌面）拥有强大的3D引擎，公司决定深入挖掘其潜力推出风格化强烈的各种3D主题。与常见的二维app动效不同，3D动效限制更少，却也更具有挑战性，同时还需兼顾手机的性能，探索效果与能耗的平衡边界。</p>
+							<p>通过与研发紧密合作，将天马行空的想法照进现实，效果惊艳，一上线各项数据即冲到同时期各主题前列。</p>
+							<p>同时作为第一套3D主题为以后的其他3D主题探明了方向，之后的主题都能快速高效的设计上线。更是以之为基础打造出了3D主题模板开放给社区设计师，盘活了社区的力量，实现了CML安装量的高速增长。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>3D动效</li>
+									<li>OpenGL</li>
+									<li>模型</li>
+									<li>贴图</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1000x1026">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">小伙伴TV品牌形象动效</h3>
+					<a href="img/original/btv.mp4" class="img-wrap"><img src="img/thumbs/btv.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>小伙伴TV品牌形象动效</h3>
+							<p>为少儿动画APP-小伙伴TV品牌LOGO和卡通形象设计的动效。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>少儿</li>
+									<li>品牌</li>
+									<li>logo</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Swipe(快切)星空主题</h3>
+					<a href="img/original/12.mp4" class="img-wrap"><img src="img/thumbs/12.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>CM Swipe(快切)星空主题</h3>
+							<p>CM Swipe(快切)是一款帮助用户快速打开APP的工具，作为默认主题之一的星空主题希望带给用户一种“手指一划，打开一片星空”的梦幻。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>星空</li>
+									<li>粒子</li>
+									<li>闪光</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>		
+				<div class="grid__item" data-size="800x600">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">AE脚本 - Fold and Curl</h3>
+					<a href="img/original/foldandcurl.mp4" class="img-wrap"><img src="img/thumbs/foldandcurl.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>AE折叠卷曲脚本 - Fold and Curl</h3>
+							<p>轻松制作各类折叠卷曲效果。</p>
+							<p onClick="window.open('https://github.com/bigxixi/FoldandCurl')" style="cursor:pointer;">项目地址:https://github.com/bigxixi/FoldandCurl</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>AE</li>
+									<li>脚本</li>
+									<li>插件</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="grid__item" data-size="800x600">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">写实图标动画</h3>
+					<a href="img/original/icons.mp4" class="img-wrap"><img src="img/thumbs/icons.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>写实图标动画</h3>
+							<p>业余练习写实图标动画。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>写实</li>
+									<li>图标</li>
+									<li>logo</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="400x300">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">BBBook</h3>
+					<a href="img/original/bbbook.mp4" class="img-wrap"><img src="img/thumbs/bbbook.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>BBBook</h3>
+							<p>业余练习，3D翻书效果。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>3D</li>
+									<li>翻书</li>
+									<li>dribble</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Live.me主界面下拉刷新动效</h3>
+					<a href="img/original/6.mp4" class="img-wrap"><img src="img/thumbs/6.jpg" alt="img11" />
+						<div class="description description--grid">
+							<h3>Live.me主界面下拉刷新动效</h3>
+							<p>复用下拉动作触发前界面顶部的文字logo，通过线条动画表现“刷新中”的效果，刷新结束logo回到顶部，为用户提供流畅、切换无缝的刷新体验。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>下拉刷新</li>
+									<li>加载</li>
+									<li>线条</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="800x600">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Sketch插件 - FontPacker</h3>
+					<a href="img/original/fontpackerlogodemo.mp4" class="img-wrap"><img src="img/thumbs/fontpackerlogodemo.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>Sketch字体打包插件 - FontPacker</h3>
+							<p>一键打包Sketch文档中用到的字体。</p>
+							<p>该插件获得Sketch官方插件页面推广（插件首页仅有的六个推广位之一）。</p>
+							<p onClick="window.open('https://github.com/bigxixi/Font-Packer')" style="cursor:pointer;">项目地址:https://github.com/bigxixi/Font-Packer</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>sketch</li>
+									<li>字体</li>
+									<li>插件</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>		
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CML 3D动效-All Apps切换</h3>
+					<a href="img/original/7.mp4" class="img-wrap"><img src="img/thumbs/7.jpg" alt="img01" />
+						<div class="description description--grid">
+							<h3>CML 3D动效-All Apps切换</h3>
+							<p>CM Launcher 3D（猎豹3D桌面）是全球用户量最多的安卓个性化APP，拥有许多酷炫的3D动效，每一个都是精心打磨而成。</p>
+							<p>在CML 3D中All Apps界面到文件夹界面的切换是一个常用操作，我在这里设计了一套与主界面切换相统一又兼顾页面特点的动效。</p>
+							<p>同时也对原有的方块翻页效果进行了优化，增强了翻动过程中的质感。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>3D动效</li>
+									<li>翻页</li>
+									<li>质感</li>
+									<li>OpenGL</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="800x600">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Oh Shit</h3>
+					<a href="img/original/shitcream.mp4" class="img-wrap"><img src="img/thumbs/shitcream.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>Oh Shit</h3>
+							<p>业余练习卡通描边动画。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>冰淇淋</li>
+									<li>大便</li>
+									<li>卡通</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Lite扫描+清理动效</h3>
+					<a href="img/original/8.mp4" class="img-wrap"><img src="img/thumbs/8.jpg" alt="img02" />
+						<div class="description description--grid">
+							<h3>CM Lite扫描+清理动效</h3>
+							<p>CM Lite是猎豹清理大师的简化版，主打清爽简洁的清理体验，故而动效需要做到表意清晰的同时足够轻。</p>
+							<p>扫描过程设计了一个类似雷达的界面，用色块和气泡减轻了传统雷达界面的严肃科技感，同时中间三个主圆环加速跃动使界面仿佛激活了生命活力，增强了扫描快感。</p>
+							<p>整个界面从扫描到清理到结果页，中心三个圆都是复用元素进行不同变化，加强了界面间的统一性，使界面间的联系更有逻辑。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>清新</li>
+									<li>色块</li>
+									<li>粒子</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-广告屏蔽引导</h3>
+					<a href="img/original/22.mp4" class="img-wrap"><img src="img/thumbs/22.jpg" alt="img05" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-广告屏蔽开启引导</h3>
+							<p>猎豹清理大师开启广告屏蔽功能的引导动画，通过翻页效果模拟撕掉墙上小广告的快感。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>广告屏蔽</li>
+									<li>翻页</li>
+									<li>引导</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-App休眠动效</h3>
+					<a href="img/original/10.mp4" class="img-wrap"><img src="img/thumbs/10.jpg" alt="img04" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-App休眠动效</h3>
+							<p>猎豹清理大师的省电功能可以休眠后台耗电大的app。单个app休眠操作较为耗时，故每个app休眠的过程有个进度条动画，同时app图标缩小且由彩色变黑白，表示这个过程是在休眠而非清理。</p>
+							<p>整个动画节奏舒缓，背景圆环的涟漪和亮灭的星辰可以烘托出“休眠”的概念。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>休眠</li>
+									<li>省电</li>
+									<li>进度</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CML 3D动效-天气widget</h3>
+					<a href="img/original/11.mp4" class="img-wrap"><img src="img/thumbs/11.jpg" alt="img05" />
+						<div class="description description--grid">
+							<h3>CML 3D动效-天气widget</h3>
+							<p>CM Launcher主界面的天气widget。该产品的调性是小清新3D，不适合太炫目的效果，并兼有模板化的考虑，于是设计为分层的图片与小部件3D视差动画（天气、日期等信息作为动画元素的一部分）。</p>
+							<p>由于考虑了模板化扩展，可根据不同天气、不同主题更换图片资源，丰富了扩展性。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>3D</li>
+									<li>天气</li>
+									<li>视差</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-锁屏天气把手</h3>	
+					<a href="img/original/4.mp4" class="img-wrap"><img src="img/thumbs/4.jpg" alt="img09" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-锁屏天气把手</h3>
+							<p>锁屏界面是用户每次点亮屏幕第一眼所看到的界面，我们希望在这里对用户进行异常天气预警，同时又不希望过度打扰用户。</p>
+							<p>我针对不同天气变化情况设计了一系列动效，作为占地只有百来像素的区域它无疑是轻打扰的，而一个简洁的动效却又能第一时间悄然吸引用户的视线，并生动传达出天气预警信息。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>天气</li>
+									<li>小尺寸</li>
+									<li>单色</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Swipe(快切)商业化提案</h3>
+					<a href="img/original/13.mp4" class="img-wrap"><img src="img/thumbs/13.jpg" alt="img07" />
+						<div class="description description--grid">
+							<h3>CM Swipe(快切)商业化提案</h3>
+							<p>挖掘CM Swipe的动画引擎潜力，探索商业化展现形式。这个设计是将广告的弹出和点击后的交互连贯化处理，使广告展现更协调统一。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>广告</li>
+									<li>商业化</li>
+									<li>全景</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x960">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Live.me-动态贴纸</h3>	
+					<a href="img/original/29.mp4" class="img-wrap"><img src="img/thumbs/29.jpg" alt="img09" />
+						<div class="description description--grid">
+							<h3>Live.me-动态贴纸</h3>
+							<p>运用面部追踪技术给主播脸上装扮各种个性动态贴纸。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>直播</li>
+									<li>表情</li>
+									<li>动态贴纸</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Locker隐私扫描及处理</h3>
+					<a href="img/original/14.mp4" class="img-wrap"><img src="img/thumbs/14.jpg" alt="img08" />
+						<div class="description description--grid">
+							<h3>CM Locker隐私扫描及处理</h3>
+							<p>CM Locker是安卓排名靠前的锁屏工具软件，其隐私保护功能能帮助用户更好地保护隐私安全。安全扫描及处理的动效设计结合猎豹清理大师家族背景颜色变化对应安全等级的思路和Material Design的卡片化语言，整个过程流畅清爽。</p>
+							<p>这个版本的动效上线后保护按钮点击率增长明显，为后续商业化探索带来了充足的流量支持。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>锁屏</li>
+									<li>涟漪</li>
+									<li>卡片化</li>
+									<li>Material Design</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-动态闪屏</h3>
+					<a href="img/original/15.mp4" class="img-wrap"><img src="img/thumbs/15.jpg" alt="img09" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-动态闪屏</h3>
+							<p>遇到重大节日或者事件，猎豹清理大师会有动态闪屏。对比之前的静态闪屏，加入动画后闪屏点击率明显上升，商业化效果显著。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>闪屏</li>
+									<li>节日</li>
+									<li>H5</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Locker负一屏页面编辑</h3>
+					<a href="img/original/16.mp4" class="img-wrap"><img src="img/thumbs/16.jpg" alt="img10" />
+						<div class="description description--grid">
+							<h3>CM Locker负一屏页面编辑</h3>
+							<p>CM Locker负一屏页面编辑动效，帮助研发更直观地理解实现对应效果。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>负一屏</li>
+									<li>原型</li>
+									<li>拖拽</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Locker快捷栏收起/展开</h3>
+					<a href="img/original/17.mp4" class="img-wrap"><img src="img/thumbs/17.jpg" alt="img11" />
+						<div class="description description--grid">
+							<h3>CM Locker快捷栏收起/展开</h3>
+							<p>CM Locker快捷栏收起/展开动效，简单直观。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>展开</li>
+									<li>收起</li>
+									<li>隐藏</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Swipe引导动效</h3>
+					<a href="img/original/18.mp4" class="img-wrap"><img src="img/thumbs/18.jpg" alt="img01" />
+						<div class="description description--grid">
+							<h3>CM Swipe引导动效</h3>
+							<p>引导用户开启和使用CM Swipe，演示CM Swipe的各功能。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>引导</li>
+									<li>翻页</li>
+									<li>演示</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="800x600">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Drop</h3>
+					<a href="img/original/drop.mp4" class="img-wrap"><img src="img/thumbs/drop.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>Drop</h3>
+							<p>业余练习水滴效果。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>水滴</li>
+									<li>融球</li>
+									<li>练习</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Launcher文件夹展开/收起</h3>
+					<a href="img/original/19.mp4" class="img-wrap"><img src="img/thumbs/19.jpg" alt="img02" />
+						<div class="description description--grid">
+							<h3>CM Launcher文件夹展开/收起</h3>
+							<p>轻快活泼地展开、收起一个文件夹。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>文件夹</li>
+									<li>展开</li>
+									<li>收起</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x640">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Locker开启权限引导</h3>
+					<a href="img/original/27.mp4" class="img-wrap"><img src="img/thumbs/27.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>CM Locker开启权限引导</h3>
+							<p>通过简单明了的动画引导用户开启CM Locker特定功能需要的权限。这个动效上线后开启率很高，已作为成功经验复用到其他产品中。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>引导</li>
+									<li>手势</li>
+									<li>权限开启</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>  
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-低电量模式开启</h3>
+					<a href="img/original/21.mp4" class="img-wrap"><img src="img/thumbs/21.jpg" alt="img03" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-低电量模式开启</h3>
+							<p>开启低电量模式的动效，降低手机能耗。开启的同时也有高耗能app处理的动效，以及日志信息流动效。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>省电</li>
+									<li>图标动画</li>
+									<li>信息流</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-低电量手动优化</h3>
+					<a href="img/original/20.mp4" class="img-wrap"><img src="img/thumbs/20.jpg" alt="img04" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-低电量手动优化</h3>
+							<p>开启低电量模式一段时间后手动优化处理的动效。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>省电</li>
+									<li>图标动画</li>
+									<li>信息流</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Swipe(快切)圣诞主题</h3>
+					<a href="img/original/23.mp4" class="img-wrap"><img src="img/thumbs/23.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>CM Swipe(快切)圣诞主题</h3>
+							<p>CM Swipe(快切)圣诞节特别版，用户轻轻一划打开一片冰雪世界，会根据翻页方向漂移的漫天雪花和圣诞老人一起烘托美妙的圣诞氛围。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>雪花</li>
+									<li>粒子</li>
+									<li>圣诞</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1200x900">
+				<div class="prev-dsp"></div>		
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">Live.me LOGO动效</h3>			
+					<a href="img/original/2.mp4" class="img-wrap"><img src="img/thumbs/2.jpg" alt="img07" />
+						<div class="description description--grid">
+							<h3>Live.me LOGO动效</h3>
+							<p>Live.me是猎豹移动推出的海外直播产品，现已有全球数千万活跃用户，在美国、日本等发达国家市场已成为年轻人的社交新宠。</p>
+							<p>Live.me的品牌调性是洋溢青春活力的舞台秀场，LOGO动画的设计也是源于这种理念，通过品牌色的聚光灯闪耀扫射，最后交汇成五角星LOGO和文字，夜场感张力十足。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>聚光灯</li>
+									<li>LOGO动画</li>
+									<li>闪光</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-负一屏卡片刷新</h3>
+					<a href="img/original/24.mp4" class="img-wrap"><img src="img/thumbs/24.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-负一屏卡片刷新</h3>
+							<p>负一屏卡片手动下拉刷新时的动效，下拉过程拉出一个占位卡片，松手后触发后台拉取最新卡片并展示loading动画，若成功则触发刷新成功动效。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>刷新</li>
+									<li>卡片</li>
+									<li>触点跟随</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-省电功能引导</h3>
+					<a href="img/original/25.mp4" class="img-wrap"><img src="img/thumbs/25.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-省电功能引导</h3>
+							<p>引导用户使用清理大师app内置的省电功能。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>省电</li>
+									<li>液体</li>
+									<li>引导</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x640">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CML 3D动效-方块翻页优化</h3>
+					<a href="img/original/26.mp4" class="img-wrap"><img src="img/thumbs/26.jpg" alt="img06" />
+						<div class="description description--grid">
+							<h3>CML 3D动效-方块翻页优化</h3>
+							<p>在原有方块翻页效果的基础上增强了翻动过程中的质感。通过分解演示向研发传达实现过程。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>3D动效</li>
+									<li>翻页</li>
+									<li>质感</li>
+									<li>OpenGL</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">猎豹清理大师-降温动效</h3>
+					<a href="img/original/9.mp4" class="img-wrap"><img src="img/thumbs/9.jpg" alt="img03" />
+						<div class="description description--grid">
+							<h3>猎豹清理大师-降温动效</h3>
+							<p>通过在桌面弹出卡片提示用户手机异常状况，并引导用户点击调用清理大师对应功能清除异常。</p>
+							<p>处理过程的动效通过温度计刻度变化及背景大块颜色、细节雪花等的变化，降低用户等待过程焦虑的同时突出降温完成的清爽感。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>降温</li>
+									<li>色块</li>
+									<li>Material Design</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CM Locker-清理动效</h3>
+					<a href="img/original/30.mp4" class="img-wrap"><img src="img/thumbs/30.jpg" alt="img03" />
+						<div class="description description--grid">
+							<h3>CM Locker-清理动效</h3>
+							<p>CM Locker内置清理功能的动效，包括锁屏界面图标动画引导和点击后的清理过程。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>引导</li>
+									<li>清理</li>
+									<li>Material Design</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+                <div class="grid__item" data-size="540x960">
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CML 3D主题-万圣节</h3>	
+					<a href="img/original/28.mp4" class="img-wrap"><img src="img/thumbs/28.jpg" alt="img08" />
+						<div class="description description--grid">
+							<h3>CML 3D主题-万圣节</h3>
+							<p>以Next Tech主题为基础模板设计的万圣节主题，加入了更有趣的3D动效，并衍生出了新的主题模板。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>3D动效</li>
+									<li>OpenGL</li>
+									<li>模型</li>
+									<li>贴图</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="grid__item" data-size="720x1280">	
+					<div class="prev-dsp"></div>	
+					<h3 class="prev-dsptext">CUBOT猎豹定制手机开机动画</h3>
+					<a href="img/original/5.mp4" class="img-wrap"><img src="img/thumbs/5.jpg" alt="img10" />
+						<div class="description description--grid">
+							<h3>CUBOT猎豹定制手机开机动画</h3>
+							<p>CUBOT与猎豹合作的定制版手机开机动画，设计了一只快速奔跑的猎豹，身上扫过电路板的纹路，最后变成猎豹移动的LOGO，表现出手机的快、高科技感。</p>
+							<div class="details">
+								<ul>
+									<li>关键词:</li>
+									<li>猎豹</li>
+									<li>奔跑</li>
+									<li>科技感</li>
+								</ul>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				
+
+
+				
+
+<!-- /、、、、、、、、、、、、、、、、、、、、、、、、、、、、/ -->
+			</div>
+
+			
+			<!-- /grid -->
+			<div class="preview"">
+				
+				<button class="action action--close"><img src="img/X.svg"></img><span class="text-hidden">Close</span></button>
+				<div class="description description--preview"></div>
+			</div>
+			<!-- /preview -->
+		</div>
+		<!-- /content -->
+		<section class="content content--related">
+			<nav class="codrops-demos">
+				<p>更多作品：</a>
+				<a href="https://dribbble.com/bigxixi" target="_blank">我的Dribbble作品集</a>
+				<a href="https://github.com/bigxixi" target="_blank">我写的Sketch插件、AE脚本</a>
+				<br>
+				<!--<a href="#" onclick="window.open('mailto:xixi@bigxixi.com');">——>联系我:xixi@bigxixi.com</a>-->
+			</nav>
+			<a class="media-item">
+				<h3 class="media-item__title" id='rtt'>↑返回顶部↑</h3>
+			</a>
+
+		</section>
+	</div>
+	<!-- /container -->
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/scrollTop.js"></script>
+	<script src="js/masonry.pkgd.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		function handPlay(){
+			var Media=document.getElementById("video");
+			Media.play(); 
+		}
+		(function() {
+			var support = { transitions: Modernizr.csstransitions },
+				// transition end event name
+				transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
+				transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+				onEndTransition = function( el, callback ) {
+					var onEndCallbackFn = function( ev ) {
+						if( support.transitions ) {
+							if( ev.target != this ) return;
+							this.removeEventListener( transEndEventName, onEndCallbackFn );
+						}
+						if( callback && typeof callback === 'function' ) { callback.call(this); }
+					};
+					if( support.transitions ) {
+						el.addEventListener( transEndEventName, onEndCallbackFn );
+					}
+					else {
+						onEndCallbackFn();
+					}
+				};
+
+			new GridFx(document.querySelector('.grid'), {
+				imgPosition : {
+					x : -0.5,
+					y : 1
+				},
+				onOpenItem : function(instance, item) {
+					instance.items.forEach(function(el) {
+						if(item != el) {
+							var delay = Math.floor(Math.random() * 50);
+							el.style.WebkitTransition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), -webkit-transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+							el.style.transition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+							el.style.WebkitTransform = 'scale3d(0.1,0.1,1)';
+							el.style.transform = 'scale3d(0.1,0.1,1)';
+							el.style.opacity = 0;
+						}
+					});
+				},
+				onCloseItem : function(instance, item) {
+					instance.items.forEach(function(el) {
+						if(item != el) {
+							el.style.WebkitTransition = 'opacity .4s, -webkit-transform .4s';
+							el.style.transition = 'opacity .4s, transform .4s';
+							el.style.WebkitTransform = 'scale3d(1,1,1)';
+							el.style.transform = 'scale3d(1,1,1)';
+							el.style.opacity = 1;
+
+							onEndTransition(el, function() {
+								el.style.transition = 'none';
+								el.style.WebkitTransform = 'none';
+							});
+						}
+					});
+				}
+			});
+		})();
+	</script>
+</body>
+
+</html>
+
