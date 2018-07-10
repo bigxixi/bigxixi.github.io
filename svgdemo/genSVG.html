@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Created by BigXiXi 渣代码，轻喷XD ->有问题欢迎联系 xixi@bigxixi.com -->
+    <meta charset="utf-8">
+    <title>面部特征点 SVG 动画生成</title>
+    <style>
+        .txa{
+            font-family: -apple-system, SF UI Text, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            font-size: 14px;
+            line-height: 1.3;
+            resize: none;
+            border: none;
+            /* box-shadow: 0px 0px 4px 2px lightblue;
+            border: 1px;
+            border-color: cornflowerblue; */
+            border-radius: 4px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            padding: 10px;
+            overflow: auto;
+            /* white-space: nowrap; */
+            box-sizing: border-box;
+            background-color: #DFF4FF;
+        }
+        #codeCont{
+            /* float: right; */
+            width: 100%;
+        }
+        h1{
+            font-family: -apple-system, SF UI Text, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+        h2{
+            font-family: -apple-system, SF UI Text, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            margin: 10px; 
+        }
+        .texts{
+            font-family: -apple-system, SF UI Text, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            float: left;
+            width:100%;
+            font-size: 14px;
+        }
+        .imgg{
+            float: left;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+        #svgCode{
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translate(-50%, 0%) scale(1,1);
+            margin: 0;
+            padding: 0;
+            width: 90%;
+            height: 50%;
+            /* background-color: black; */
+            /* opacity: 0.8; */
+            display: none;
+            z-index: 2;
+            min-height: 500px;
+        }
+        #dotInfo{
+            width: 100%;
+            min-height: 100px;
+        }
+        #imgURL{
+            width: 100%;
+            height: 40px;
+        }
+        #show{
+            display: block;
+            margin-top: 50px;
+            position: relative;
+            z-index: -1;
+        }
+        #btns{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }     
+        #svgCont{
+            width: 100%;
+        }
+        #aniCont{
+            width: 80%;
+        }
+        #matt{
+            position: fixed;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0.8;
+            display: none;
+            z-index: 1;
+            transform: scale(2,2);
+        }
+        #dsp{
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translate(-50%, 0%) scale(1,1);
+            margin: 0;
+            padding: 0;
+            width: 90%;
+            height: 10%;
+            color:white;
+            z-index: 1;
+            display: none;
+        }
+        .btn-style{  
+            position: absolute;
+            font-family: -apple-system, SF UI Text, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            backface-visibility: hidden;
+            width:  50px;
+            text-align: center;
+            /* height: 10px; */
+            cursor: pointer;
+            display: block;
+            white-space: nowrap;
+            background:cornflowerblue;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 15px;
+            border: 0px solid #246;
+            border-width: 0px 0px 4px 0px;
+            padding: 15px 30px 15px 30px;
+            color: #fff;
+            font-size: 22px;
+            transition: all 0.2s ease;
+        }
+        .btn-style:hover{
+            width: 80px;
+            background:dodgerblue;
+         }
+        #svgBTN1{
+            top:700px;
+        }
+        #svgBTN2{
+            top:800px;
+        }
+        #svgBTN3{
+            top:900px;
+        }
+        #svgBTN4{
+            top:1000px;
+        }
+        #svgBTN5{
+            top:1100px;
+        }
+        #helpPic{
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translate(-50%, 0%) scale(1,1);
+            margin: 0;
+            padding: 0;
+            width: 885px;
+            height: 1585px;
+            /* background-color: black; */
+            /* opacity: 0.8; */
+            display: none;
+            z-index: 2;
+            background: url('4s.jpg');
+        }
+    </style>
+    <script src="genSVG_All.js"></script>
+</head>
+<body>
+
+    <div id="matt" onclick="closeMatt()"></div>
+    <div id="helpPic" onclick="closeMatt()"></div>
+    <div id="codeCont">
+            <div id="dsp" class="texts" onclick="closeMatt()">SVG 代码。点击蒙版区域关闭。</div>
+            <div></div>
+            <!-- <div class='texts'>SVG 代码：</div> -->
+            <textarea class='txa' spellcheck="false" id="svgCode" wrap="virtual" ></textarea>
+    </div>
+    <!-- <div id="codePanel"></div> -->
+    <h1 style="text-align: center;">面部特征点 SVG 动画生成</h1>
+    <div class="texts" style="text-align: center;font-size: 10px;">by BigXiXi</div>
+    <h2 onclick="help()">使用步骤(->查看图示<-)：</h2>
+    <div class="texts">1、从网络上找一张带脸的图，复制图片地址。</div><br />
+    <!-- <img class="imgg" src="http://bigxixi.com/svgdemo/s1.jpg"/> -->
+    <div class="texts">2、访问网易人工智能的演示网页，粘贴图片地址并提交，获取面部特征点信息。</div><br />
+    <a class="texts" href="https://ai.163.com/#/m/services/intVision/face/anchor">--> https://ai.163.com/#/m/services/intVision/face/anchor</a><br />
+    <!-- <img class="imgg" src="http://bigxixi.com/svgdemo/s2.jpg"/> -->
+    <div class="texts">3、将图片地址和面部特征点信息粘贴到本页对应的地方，点击「动画1」-「动画5」查看对应动画。</div><br />
+
+    <h2 style="opacity: 0;">-</h2>
+    <!-- <img class="imgg" src="http://bigxixi.com/svgdemo/s3.jpg"/> -->
+    <h2>粘贴网络图片地址：</h2>
+    <textarea class='txa' spellcheck="false" id="imgURL" wrap="soft"></textarea> 
+    <h2>粘贴关键点信息：</h2>
+    <textarea class='txa' spellcheck="false" id="dotInfo" wrap="soft"></textarea>  
+         
+    <!-- <button id='submitIMG' type="button" onclick="getIMGwh()">提交</button>
+    <div id='test'></div> -->
+    <h2>点击按钮，预览 SVG 动画。点击动画查看代码。 </h2>
+        
+    <div id='btns'>
+        <div id='svgBTN1' class="btn-style" type="div" onclick='changeSVG(this)'>动画1</div>
+        <div id='svgBTN2' class="btn-style" type="div" onclick='changeSVG(this)'>动画2</div>
+        <div id='svgBTN3' class="btn-style" type="div" onclick='changeSVG(this)'>动画3</div>
+        <div id='svgBTN4' class="btn-style" type="div" onclick='changeSVG(this)'>动画4</div>
+        <div id='svgBTN5' class="btn-style" type="div" onclick='changeSVG(this)'>动画5</div>
+    </div>
+    <div id='svgCont'>
+
+        <div id='aniCont' onclick="showCode()">
+            <div id="show"></div>
+        </div>
+        
+    </div>
+
+    
+    <script>
+        var imgH=0;
+        var imgW=0;
+        var imgURL;
+        var dotInfo;
+        window.onload = function(){
+            document.getElementById('imgURL').value = 'http://bigxixi.com/svgdemo/girl.jpg';
+            document.getElementById('dotInfo').value = '{\n'+
+                                                        '    "status": "000000",\n'+
+                                                        '    "desc": "1",\n'+
+                                                        '    "detail": [\n'+
+                                                        '        {\n'+
+                                                        '            "face": "202 262 280 280 ",\n'+
+                                                        '            "pts": "186,366;187,403;191,439;199,474;214,506;240,534;274,554;306,569;336,572;363,565;387,550;412,530;432,507;443,478;449,450;452,419;452,388;223,340;249,331;275,329;301,335;324,345;370,348;392,339;413,335;434,338;447,352;347,370;348,387;349,405;350,423;319,449;332,451;345,454;357,452;368,449;252,368;270,355;291,356;307,375;289,376;267,375;373,376;389,359;410,359;424,373;412,379;392,379;274,485;303,481;330,477;344,481;357,478;378,482;396,487;379,505;359,515;345,516;329,514;302,505;283,486;330,488;344,489;357,487;387,489;358,500;344,500;330,499"\n'+
+                                                        '        }\n'+
+                                                        '    ]\n'+
+                                                        '}';
+            setIMGsize();
+            changeSVG({id:"N1"});
+        }
+        window.onresize = setIMGsize;
+        svgCodeArea = document.getElementById('svgCode');
+        //获取图片宽高
+        function getMeta(url, callback) {
+            var img = new Image();
+            img.src = url;
+            img.onload = function() { callback(this.width, this.height); }
+        }
+        function changeSVG(e){ 
+            var SvgIdx = e.id.split('N')[1];
+            var contents;
+            getMeta(
+                document.getElementById('imgURL').value,
+                function(width, height) { 
+                    imgW = width;
+                    imgH = height;
+                    imgURL = document.getElementById('imgURL').value;
+                    console.log(document.getElementById('dotInfo').value);
+                    dotInfo = JSON.parse(document.getElementById('dotInfo').value);
+            
+                    switch(SvgIdx){
+                        case '1':
+                            contents = genSVG(dotInfo,imgW,imgH,imgURL);
+                            break;
+                        case '2':
+                            contents = genSVG2(dotInfo,imgW,imgH,imgURL);
+                            break;
+                        case '3':
+                            contents = genSVG3(dotInfo,imgW,imgH,imgURL);
+                            break;
+                        case '4':
+                            contents = genSVG4(dotInfo,imgW,imgH,imgURL);
+                            break;
+                        case '5':
+                            contents = genSVG5(dotInfo,imgW,imgH,imgURL);
+                            break;
+                        case '6':
+                            contents = genSVG6(dotInfo,imgW,imgH,imgURL);
+                            break;
+                        default:
+                            contents = genSVG(dotInfo,imgW,imgH,imgURL);
+
+                    }
+                    svgCodeArea.value = contents;
+                    document.getElementById('show').innerHTML =  svgCodeArea.value;
+                }
+            );
+        }
+        function setIMGsize(){
+            var wh = window.innerHeight;
+            var ww = window.innerWidth;
+            var ratio = 1;
+            var transX = 0;
+            var transY = 0;
+            var leftOff = 0;
+            getMeta(
+                document.getElementById('imgURL').value,
+                function(width, height) { 
+                // ratio = ww/width;
+                leftOff = 50*(ww-width)/ww;
+                // transX = 0.5*(1-ratio)*width;
+                // transY = -(Math.abs((1-ratio)*height)+100);
+                var svgShow = document.getElementById('show');
+                svgShow.style = 'left:'+Math.abs(leftOff)+'%;';
+                //svgShow.style = 'transform: translateX(-'+transX+'px) translateY(-'+transY+'px) scale('+ratio+');';
+            });
+        }
+        function showCode(){
+            document.getElementById('matt').style.display = "block";
+            //document.getElementById('codePanel').style.display = "block";
+            document.getElementById('svgCode').style.display = "block";
+            document.getElementById('dsp').style.display = "block";
+        }
+        function closeMatt(){
+            document.getElementById('matt').style.display = "none";
+            //document.getElementById('codePanel').style.display = "none";
+            document.getElementById('svgCode').style.display = "none";
+            document.getElementById('dsp').style.display = "none";
+            document.getElementById('helpPic').style.display = "none";
+        }
+        function help(){
+            document.getElementById('matt').style.display = "block";
+            document.getElementById('helpPic').style.display = "block";
+        }
+    </script>
+</body>
+</html>
+
+
+

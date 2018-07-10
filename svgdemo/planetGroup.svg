@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="650px" height="300px" viewBox="-10 -10 660 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>planetGroup</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter id='n'>
+            <feTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='10' stitchTiles='stitch' opacity='0.4'/>
+        </filter>
+    </defs>
+    <g id="PlanetALL" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="planetPage" transform="translate(-121.000000, -821.000000)">
+            <g id="planetGroup" transform="translate(106.000000, 787.000000)">
+
+                 <path id="bigPlanetDown" d="M263.038976,154.566958 C273.919868,196.775583 312.757409,228 359,228 C412.901746,228 456.742301,185.575603 457.973419,132.781899 C421.971608,147.671061 370.347414,157 313,157 C295.737747,157 278.994064,156.154722 263.038943,154.566955 L263.038976,154.566958 Z" fill="#D23F2A"></path>
+                <path id="bigPath" d="M341.77773,207.923971 C511.478165,159.263154 641.40229,93.1535859 631.971387,60.2641167 C622.540483,27.3746476 477.325842,40.1598508 307.625407,88.8206674 C137.924973,137.481484 8.00084696,203.591053 17.4317505,236.480522 C26.862654,269.369991 172.077295,256.584788 341.77773,207.923971 Z" stroke="#000000" stroke-width="2"></path>
+                
+                <circle id="big3" fill="#D23F2A" cx="0" cy="0" r="14">
+                    <animateMotion begin="0s" dur="15s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#bigPath" />
+                    </animateMotion>
+                </circle>
+                
+                <circle id="big2" fill="#D23F2A" cx="0" cy="0" r="17.5">
+                    <animateMotion begin="-5s" dur="15s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#bigPath" />
+                    </animateMotion>
+                </circle>
+
+                <circle id="big1" fill="#D23F2A" cx="0" cy="0" r="9">
+                    <animateMotion begin="-11s" dur="15s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#bigPath" />
+                    </animateMotion>
+                </circle>
+
+                <path id="smallPath" d="M366.553285,177.547385 C491.139407,141.822889 586.568404,93.4445038 579.699915,69.4912365 C572.831426,45.5379693 466.266409,55.0804353 341.680286,90.804931 C217.094164,126.529427 121.665167,174.907812 128.533656,198.86108 C135.402145,222.814347 241.967163,213.271881 366.553285,177.547385 Z" stroke="#000000" stroke-width="2"></path>
+                <circle id="small1" fill="#A31B01" cx="0" cy="0" r="11.5">
+                    <animateMotion begin="0s" dur="10s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#smallPath" />
+                    </animateMotion>
+                </circle>
+                <circle id="small2" fill="#A31B01" cx="0" cy="0" r="12.5">
+                     <animateMotion begin="-3.3s" dur="10s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#smallPath" />
+                    </animateMotion>               
+                </circle>
+        
+                <circle id="small3" fill="#A31B01" cx="0" cy="0" r="7">
+                     <animateMotion begin="-6.6s" dur="10s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#smallPath" />
+                    </animateMotion>               
+                </circle>
+                <circle id="small4" fill="#A31B01" cx="0" cy="0" r="7">
+                    <animateMotion begin="-4s" dur="10s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#smallPath" />
+                    </animateMotion>               
+                </circle>
+                <circle id="small5" fill="#A31B01" cx="0" cy="0" r="4">
+                     <animateMotion begin="-0.7s" dur="10s" rotate="auto" repeatCount="indefinite">
+                        <mpath xlink:href="#smallPath" />
+                    </animateMotion>               
+                </circle>
+                <path id="bigPlanetUp1" d="M263.038976,155.566958 C261.054548,147.869063 260,139.805817 260,131.5 C260,77.6522369 304.32381,34 359,34 C413.67619,34 458,77.6522369 458,131.5 C458,132.26271 457.991108,133.023375 457.973419,133.781899 C421.971608,148.671061 370.347414,158 313,158 C295.737747,158 278.994064,157.154722 263.038943,155.566955 L263.038976,155.566958 Z"></path>
+                 <g id="bigPlanetUp">
+                    <use id="redUp" fill="#D23F2A" xlink:href="#bigPlanetUp1"></use>
+                    <use style="filter:url(#n);mix-blend-mode: multiply;mask-image: url(#bigPlanetUp);"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg> 

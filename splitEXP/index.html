@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transform To String</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="content">
+    <div class="config">
+        <span><input type="checkbox" id="quote-type"> 使用单引号</span>
+        <span>连接字符: <input type="text" id="join"></span>
+        <span>结尾字符: <input type="text" id="end"></span>
+    </div>
+
+    <textarea spellcheck="false" id="input-area"  wrap="soft" ></textarea>
+    <pre id="output-area"></pre>
+    <button class="btn" data-clipboard-target="#output-area">复制</button>
+
+</div>
+<script src="assets/js/clipboard.min.js"></script>
+<script type="text/javascript" src="assets/js/index.js"></script>
+</body>
+</html>
