@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=1242,user-scalable=no" /> 
+
+  <title>Loading 预览</title>
+  <style>
+        *{
+            margin: 0 auto;
+            padding: 0 auto;
+        }
+        html{
+            position: relative;
+            width:100%;
+            height:100%;
+        }
+        body{
+            width:100%;
+            height: 100%;
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+        }
+        #comp{
+            background-color: #fff;
+            width: 750px;
+            height: 1334px;
+            display: block;
+            overflow: hidden;
+            position: relative;
+            transform: translate3D(0,0,0) scale(1,1);
+            transform-origin:50% 0%;
+        }
+        #myLoading{
+            /* background: url("imgs/Slice_0_147.png"); */
+            left: 335px;
+            top: 622px;
+            width: 96px;
+            height: 105px;
+            transform: translate3D(0,0,0) scale(1,1);
+            transform-origin:50% 50%;
+            overflow: hidden;
+            display: block;
+            position: absolute; 
+        }
+    </style>
+</head>
+<body>
+    <div id="comp">
+        <div id="myLoading">
+                <svg width="96px" height="105px" viewBox="0 0 96 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="loadingV2" transform="translate(1,2)" fill="#C92B2B">
+                        <g id="shapes" stroke="#C92B2B" stroke-linecap="round" stroke-width="4">
+                            <path d="M1,45 L1,19" id="l1"></path>
+                            <path d="M14,45 L14,0" id="l2"></path>
+                            <path d="M27,45 L27,24" id="l3"></path>
+                            <path d="M40,45 L40,10" id="l4"></path>
+                            <path d="M53,45 L53,24" id="l5"></path>
+                            <path d="M66,45 L66,0" id="l6"></path>
+                            <path d="M79,45 L79,19" id="l7"></path>
+                        </g>
+                        <path d="M0.56,83.44 L2.14,83.44 L2.14,98 L0.56,98 L0.56,83.44 Z M11.06,87.38 C12.6,87.38 13.84,87.9 14.76,88.98 C15.64,90 16.08,91.28 16.08,92.84 C16.08,94.38 15.64,95.66 14.78,96.66 C13.84,97.74 12.6,98.28 11.06,98.28 C9.5,98.28 8.28,97.74 7.36,96.66 C6.48,95.66 6.04,94.38 6.04,92.84 C6.04,91.28 6.48,90 7.36,88.98 C8.28,87.9 9.5,87.38 11.06,87.38 Z M11.06,88.72 C9.96,88.72 9.1,89.14 8.5,89.98 C7.94,90.74 7.68,91.68 7.68,92.84 C7.68,93.98 7.94,94.92 8.5,95.68 C9.1,96.52 9.96,96.94 11.06,96.94 C12.14,96.94 13,96.52 13.64,95.68 C14.18,94.92 14.46,93.96 14.46,92.84 C14.46,91.68 14.18,90.74 13.64,89.98 C13,89.14 12.14,88.72 11.06,88.72 Z M24.16,87.38 C25.64,87.38 26.72,87.76 27.44,88.54 C28.04,89.22 28.36,90.16 28.36,91.36 L28.36,98 L26.86,98 L26.86,96.26 C26.46,96.82 25.92,97.28 25.28,97.64 C24.52,98.06 23.66,98.28 22.7,98.28 C21.66,98.28 20.84,98.02 20.22,97.5 C19.58,96.96 19.26,96.26 19.26,95.42 C19.26,94.24 19.72,93.36 20.68,92.76 C21.52,92.2 22.72,91.9 24.28,91.88 L26.76,91.84 L26.76,91.3 C26.76,89.56 25.86,88.7 24.06,88.7 C23.3,88.7 22.68,88.84 22.2,89.16 C21.66,89.48 21.32,89.98 21.16,90.64 L19.58,90.52 C19.8,89.44 20.34,88.62 21.18,88.1 C21.94,87.62 22.92,87.38 24.16,87.38 Z M26.76,93.04 L24.38,93.08 C22.06,93.12 20.9,93.88 20.9,95.38 C20.9,95.86 21.08,96.24 21.48,96.56 C21.88,96.86 22.4,97.02 23.04,97.02 C24.02,97.02 24.88,96.7 25.64,96.06 C26.38,95.44 26.76,94.72 26.76,93.92 L26.76,93.04 Z M39.98,83.44 L41.58,83.44 L41.58,98 L40.08,98 L40.08,96.3 C39.36,97.62 38.2,98.28 36.64,98.28 C35.12,98.28 33.94,97.72 33.1,96.64 C32.32,95.64 31.94,94.36 31.94,92.8 C31.94,91.28 32.32,90.04 33.1,89.04 C33.94,87.92 35.08,87.38 36.56,87.38 C38.04,87.38 39.18,88.1 39.98,89.56 L39.98,83.44 Z M36.9,88.7 C35.76,88.7 34.9,89.1 34.34,89.9 C33.82,90.6 33.58,91.56 33.58,92.8 C33.58,94.04 33.82,95.02 34.32,95.74 C34.88,96.54 35.72,96.96 36.84,96.96 C37.88,96.96 38.68,96.56 39.26,95.76 C39.76,95.04 40.02,94.1 40.02,92.94 L40.02,92.74 C40.02,91.54 39.72,90.56 39.16,89.82 C38.58,89.06 37.82,88.7 36.9,88.7 Z M46.88,83.76 C47.22,83.76 47.5,83.86 47.74,84.1 C47.98,84.3 48.1,84.58 48.1,84.94 C48.1,85.28 47.98,85.56 47.74,85.8 C47.5,86.02 47.22,86.14 46.88,86.14 C46.54,86.14 46.26,86.02 46.02,85.8 C45.78,85.56 45.68,85.28 45.68,84.94 C45.68,84.58 45.78,84.3 46.02,84.1 C46.26,83.86 46.54,83.76 46.88,83.76 Z M46.08,87.66 L47.68,87.66 L47.68,98 L46.08,98 L46.08,87.66 Z M57.02,87.38 C59.58,87.38 60.88,88.8 60.88,91.64 L60.88,98 L59.28,98 L59.28,91.76 C59.28,89.74 58.36,88.74 56.56,88.74 C55.84,88.74 55.22,89 54.7,89.52 C54.14,90.08 53.84,90.82 53.78,91.76 L53.78,98 L52.18,98 L52.18,87.66 L53.78,87.66 L53.78,89.18 C54.14,88.6 54.6,88.16 55.16,87.86 C55.72,87.54 56.34,87.38 57.02,87.38 Z M69.12,87.38 C70.68,87.38 71.84,88.06 72.6,89.44 L72.6,87.66 L74.2,87.66 L74.2,97.28 C74.2,100.58 72.62,102.24 69.48,102.24 C68.08,102.24 67,101.96 66.28,101.4 C65.54,100.84 65.08,100 64.9,98.88 L66.5,98.88 C66.62,99.58 66.92,100.1 67.38,100.42 C67.84,100.76 68.54,100.94 69.48,100.94 C71.56,100.94 72.6,99.78 72.6,97.5 L72.6,95.68 C71.84,97.06 70.68,97.76 69.12,97.76 C67.68,97.76 66.54,97.26 65.7,96.28 C64.86,95.32 64.46,94.1 64.46,92.6 C64.46,91.08 64.86,89.86 65.7,88.9 C66.54,87.88 67.68,87.38 69.12,87.38 Z M69.36,88.7 C68.32,88.7 67.52,89.06 66.94,89.82 C66.38,90.5 66.1,91.44 66.1,92.6 C66.1,93.68 66.34,94.58 66.84,95.26 C67.4,96.02 68.22,96.42 69.34,96.42 C70.38,96.42 71.18,96.06 71.78,95.34 C72.34,94.64 72.62,93.72 72.62,92.6 C72.62,91.44 72.34,90.5 71.78,89.82 C71.18,89.06 70.38,88.7 69.36,88.7 Z" id="loading…"></path>
+                        <g id="dots" transform="translate(79.000000, 95.000000)">
+                            <path opacity="0" d="M1.26,0.62 C1.62,0.62 1.9,0.72 2.14,0.96 C2.36,1.18 2.48,1.46 2.48,1.8 C2.48,2.16 2.36,2.44 2.14,2.66 C1.9,2.88 1.6,3 1.26,3 C0.92,3 0.64,2.88 0.42,2.66 C0.18,2.42 0.06,2.14 0.06,1.8 C0.06,1.46 0.18,1.18 0.42,0.96 C0.64,0.72 0.92,0.62 1.26,0.62 Z" id="d3"></path>
+                            <path opacity="0" d="M7.94,0.62 C8.28,0.62 8.58,0.72 8.82,0.96 C9.04,1.18 9.16,1.46 9.16,1.8 C9.16,2.16 9.04,2.44 8.82,2.66 C8.58,2.88 8.28,3 7.94,3 C7.6,3 7.32,2.88 7.08,2.66 C6.84,2.42 6.74,2.14 6.74,1.8 C6.74,1.46 6.84,1.18 7.08,0.96 C7.32,0.72 7.6,0.62 7.94,0.62 Z" id="d2"></path>
+                            <path opacity="0" d="M14.6,0.62 C14.94,0.62 15.22,0.72 15.46,0.96 C15.7,1.18 15.82,1.46 15.82,1.8 C15.82,2.16 15.7,2.44 15.46,2.66 C15.22,2.88 14.94,3 14.6,3 C14.26,3 13.98,2.88 13.74,2.66 C13.5,2.42 13.4,2.14 13.4,1.8 C13.4,1.46 13.5,1.18 13.74,0.96 C13.98,0.72 14.26,0.62 14.6,0.62 Z" id="d1"></path>
+                        </g>
+                    </g>
+                    <animate 
+                        xlink:href="#l1" 
+                        attributeName="d" 
+                        values="M1,45 L1,0;
+                                M1,45 L1,40;
+                                M1,45 L1,0"
+                        begin="-0.1s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#l2" 
+                        attributeName="d" 
+                        values="M14,45 L14,0;
+                                M14,45 L14,40;
+                                M14,45 L14,0"
+                        begin="-0.2s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#l3" 
+                        attributeName="d" 
+                        values="M27,45 L27,0;
+                                M27,45 L27,40;
+                                M27,45 L27,0"
+                        begin="-0.3s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#l4" 
+                        attributeName="d" 
+                        values="M40,45 L40,0;
+                                M40,45 L40,40;
+                                M40,45 L40,0"
+                        begin="-0.4s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#l5" 
+                        attributeName="d" 
+                        values="M53,45 L53,0;
+                                M53,45 L53,40;
+                                M53,45 L53,0"
+                        begin="-0.5s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#l6" 
+                        attributeName="d" 
+                        values="M66,45 L66,0;
+                                M66,45 L66,40;
+                                M66,45 L66,0"
+                        begin="-0.6s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#l7" 
+                        attributeName="d" 
+                        values="M79,45 L79,0;
+                                M79,45 L79,40;
+                                M79,45 L79,0"
+                        begin="-0.7s" 
+                        dur="0.6s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#d3" 
+                        attributeName="opacity" 
+                        values="0;1;1;1;1;0"
+                        begin="0s" 
+                        dur="2s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#d2" 
+                        attributeName="opacity" 
+                        values="0;0;1;1;1;0"
+                        begin="0s" 
+                        dur="2s" 
+                        repeatCount="indefinite"
+                    />
+                    <animate 
+                        xlink:href="#d1" 
+                        attributeName="opacity" 
+                        values="0;0;0;1;1;0"
+                        begin="0s" 
+                        dur="2s" 
+                        repeatCount="indefinite"
+                    />
+                </svg>
+        </div>       
+    </div>
+<script>
+    var comp=document.getElementById('comp');
+    var hh=window.innerHeight;
+    var ww=window.innerWidth;
+    var rr=hh/1334;
+    var offset=(1334*rr-hh)/2;
+    window.onload = function(){
+        comp.style.transform = 'translate3D(0,'+offset+'px,0) scale('+rr+')';
+    } 
+
+//同时绑定 touch 和 click
+    const clickEvent = (function() {
+    if ('ontouchstart' in document.documentElement === true)
+        return 'touchstart';
+    else
+        return 'click';
+    })();
+
+    comp.addEventListener(clickEvent, changeColor);
+
+    function changeColor(){
+        var bai = "rgb(255, 255, 255)";
+        var hong = "rgb(201, 43, 43)";
+        var hei = "rgb(0, 0, 0)";
+        var p1 = document.getElementById("shapes");
+        var p2 = document.getElementById("loadingV2");
+        var p3 = getComputedStyle(comp, null)['backgroundColor'];
+
+        if(p3 == bai){
+            comp.style.backgroundColor = hong;
+            p1.setAttribute("stroke",bai);
+            p2.setAttribute("fill",bai);
+        }else if(p3 == hong){
+            comp.style.backgroundColor = hei;
+            p1.setAttribute("stroke",bai);
+            p2.setAttribute("fill",bai);
+        }else{
+            comp.style.backgroundColor = bai;
+            p1.setAttribute("stroke",hong);
+            p2.setAttribute("fill",hong);
+        }
+    }
+</script>
+</body>
+</html>
