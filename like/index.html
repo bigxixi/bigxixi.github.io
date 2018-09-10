@@ -1,0 +1,615 @@
+<!--Generated via AE2CSS by BigXiXi-->
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+<meta name="viewport" content="target-densitydpi=device-dpi,width=1242,user-scalable=no" /> 
+<title>点赞动效测试</title>
+<head>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script>
+            (function(global){var startY=0;var enabled=false;var supportsPassiveOption=false;try{var opts=Object.defineProperty({},"passive",{get:function(){supportsPassiveOption=true}});window.addEventListener("test",null,opts)}catch(e){}var handleTouchmove=function(evt){var el=evt.target;while(el!==document.body&&el!==document){var style=window.getComputedStyle(el);if(!style){break}if(el.nodeName==="INPUT"&&el.getAttribute("type")==="range"){return}var scrolling=style.getPropertyValue("-webkit-overflow-scrolling");var overflowY=style.getPropertyValue("overflow-y");var height=parseInt(style.getPropertyValue("height"),10);var isScrollable=scrolling==="touch"&&(overflowY==="auto"||overflowY==="scroll");var canScroll=el.scrollHeight>el.offsetHeight;if(isScrollable&&canScroll){var curY=evt.touches?evt.touches[0].screenY:evt.screenY;var isAtTop=startY<=curY&&el.scrollTop===0;var isAtBottom=startY>=curY&&el.scrollHeight-el.scrollTop===height;if(isAtTop||isAtBottom){evt.preventDefault()}return}el=el.parentNode}evt.preventDefault()};var handleTouchstart=function(evt){startY=evt.touches?evt.touches[0].screenY:evt.screenY};var enable=function(){window.addEventListener("touchstart",handleTouchstart,supportsPassiveOption?{passive:false}:false);window.addEventListener("touchmove",handleTouchmove,supportsPassiveOption?{passive:false}:false);enabled=true};var disable=function(){window.removeEventListener("touchstart",handleTouchstart,false);window.removeEventListener("touchmove",handleTouchmove,false);enabled=false};var isEnabled=function(){return enabled};var testDiv=document.createElement("div");document.documentElement.appendChild(testDiv);testDiv.style.WebkitOverflowScrolling="touch";var scrollSupport="getComputedStyle"in window&&window.getComputedStyle(testDiv)["-webkit-overflow-scrolling"]==="touch";document.documentElement.removeChild(testDiv);if(scrollSupport){enable()}var iNoBounce={enable:enable,disable:disable,isEnabled:isEnabled};if(typeof module!=="undefined"&&module.exports){module.exports=iNoBounce}if(typeof global.define==="function"){(function(define){define("iNoBounce",[],function(){return iNoBounce})})(global.define)}else{global.iNoBounce=iNoBounce}})(this);
+        </script>
+    <style>
+/*---Div Structure---
+
+<div id="comp">
+<div id="id9_IMG_2496"></div>
+<div id="id6_dz1"></div>
+<div id="id5_dz2"></div>
+<div id="id4_dz3"></div>
+<div id="id3_dz4"></div>
+<div id="id2_dz5"></div>
+<div id="id1_dz6"></div>
+</div>
+
+*/
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+}
+html{
+    position: relative;
+    width:100%;
+    height:100%;
+}
+body{
+    width:100%;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+}
+#comp{
+    background: transparent;
+    width: 1242px;
+    height: 2208px;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    transform: translate3D(0,0,0) scale(1,1);
+    transform-origin:50% 0%;
+}
+#id9_IMG_2496{
+    background: url("imgs/BG.jpg");
+    left: 0px;
+    top: 0px;
+    width: 1242px;
+    height: 2208px;
+    transform: translate3D(0,0,0) scale(1,1);
+    transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+}
+
+
+#dz1{
+    background: url("imgs/xg1.png");
+    left: 1059.5px;
+    top: 405.25px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.53,0.53);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+
+    /* animation: xgdh1 1.00s steps(1) forwards; */
+}
+.dzc1{
+    animation-name: xgdh1;
+    animation-duration: 1.00s;
+    animation-timing-function: steps(1);
+    animation-fill-mode: forwards;
+}
+#dz2{
+    background: url("imgs/xg2.png");
+    left: 1059.5px;
+    top: 643.25px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.53,0.53);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+    
+}
+.dzc2{
+    animation: xgdh2 0.83s steps(1) forwards;
+}
+#dz3{
+    background: url("imgs/xg3.png");
+    left: 1059.5px;
+    top: 885.25px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.53,0.53);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+    
+}
+.dzc3{
+    animation: xgdh3 0.97s steps(1) forwards;
+}
+#dz4{
+    background: url("imgs/xg4.png");
+    left: 1059.5px;
+    top: 1203px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.53,0.53);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+    
+}
+.dzc4{
+    animation: xgdh4 2.00s steps(1) forwards;
+}
+#dz5{
+    background: url("imgs/xg5.png");
+    left: 1059.5px;
+    top: 1445.75px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.53,0.53);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+    
+}
+.dzc5{
+    animation: xgdh5 0.90s steps(1) forwards;
+}
+#dz6{
+    background: url("imgs/xg6.png");
+    left: 1059.5px;
+    top: 1689px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.53,0.53);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: block;
+    position: absolute; 
+   
+}
+.dzc6{
+    animation: xgdh6 1.03s steps(1) forwards;
+}
+/*---keyframes----*/
+@keyframes xgdh1 {
+	0% { background-position: 0% 0%; }
+	3.45% { background-position: 16.6666666666667% 0%; }
+	6.90% { background-position: 33.3333333333333% 0%; }
+	10.34% { background-position: 50% 0%; }
+	13.79% { background-position: 66.6666666666667% 0%; }
+	17.24% { background-position: 83.3333333333333% 0%; }
+	20.69% { background-position: 100% 0%; }
+	24.14% { background-position: 0% 25%; }
+	27.59% { background-position: 16.6666666666667% 25%; }
+	31.03% { background-position: 33.3333333333333% 25%; }
+	34.48% { background-position: 50% 25%; }
+	37.93% { background-position: 66.6666666666667% 25%; }
+	41.38% { background-position: 83.3333333333333% 25%; }
+	44.83% { background-position: 100% 25%; }
+	48.28% { background-position: 0% 50%; }
+	51.72% { background-position: 16.6666666666667% 50%; }
+	55.17% { background-position: 33.3333333333333% 50%; }
+	58.62% { background-position: 50% 50%; }
+	62.07% { background-position: 66.6666666666667% 50%; }
+	65.52% { background-position: 83.3333333333333% 50%; }
+	68.97% { background-position: 100% 50%; }
+	72.41% { background-position: 0% 75%; }
+	75.86% { background-position: 16.6666666666667% 75%; }
+	79.31% { background-position: 33.3333333333333% 75%; }
+	82.76% { background-position: 50% 75%; }
+	86.21% { background-position: 66.6666666666667% 75%; }
+	89.66% { background-position: 83.3333333333333% 75%; }
+	93.10% { background-position: 100% 75%; }
+	96.55% { background-position: 0% 100%; }
+	100.00% { background-position: 16.6666666666667% 100%; }
+}
+@keyframes xgdh2 {
+	0% { background-position: 0% 0%; }
+	4.17% { background-position: 16.6666666666667% 0%; }
+	8.33% { background-position: 33.3333333333333% 0%; }
+	12.50% { background-position: 50% 0%; }
+	16.67% { background-position: 66.6666666666667% 0%; }
+	20.83% { background-position: 83.3333333333333% 0%; }
+	25.00% { background-position: 100% 0%; }
+	29.17% { background-position: 0% 33.3333333333333%; }
+	33.33% { background-position: 16.6666666666667% 33.3333333333333%; }
+	37.50% { background-position: 33.3333333333333% 33.3333333333333%; }
+	41.67% { background-position: 50% 33.3333333333333%; }
+	45.83% { background-position: 66.6666666666667% 33.3333333333333%; }
+	50.00% { background-position: 83.3333333333333% 33.3333333333333%; }
+	54.17% { background-position: 100% 33.3333333333333%; }
+	58.33% { background-position: 0% 66.6666666666667%; }
+	62.50% { background-position: 16.6666666666667% 66.6666666666667%; }
+	66.67% { background-position: 33.3333333333333% 66.6666666666667%; }
+	70.83% { background-position: 50% 66.6666666666667%; }
+	75.00% { background-position: 66.6666666666667% 66.6666666666667%; }
+	79.17% { background-position: 83.3333333333333% 66.6666666666667%; }
+	83.33% { background-position: 100% 66.6666666666667%; }
+	87.50% { background-position: 0% 100%; }
+	91.67% { background-position: 16.6666666666667% 100%; }
+	95.83% { background-position: 33.3333333333333% 100%; }
+	100.00% { background-position: 50% 100%; }
+}
+@keyframes xgdh3 {
+	0% { background-position: 0% 0%; }
+	3.45% { background-position: 16.6666666666667% 0%; }
+	6.90% { background-position: 33.3333333333333% 0%; }
+	10.34% { background-position: 50% 0%; }
+	13.79% { background-position: 66.6666666666667% 0%; }
+	17.24% { background-position: 83.3333333333333% 0%; }
+	20.69% { background-position: 100% 0%; }
+	24.14% { background-position: 0% 25%; }
+	27.59% { background-position: 16.6666666666667% 25%; }
+	31.03% { background-position: 33.3333333333333% 25%; }
+	34.48% { background-position: 50% 25%; }
+	37.93% { background-position: 66.6666666666667% 25%; }
+	41.38% { background-position: 83.3333333333333% 25%; }
+	44.83% { background-position: 100% 25%; }
+	48.28% { background-position: 0% 50%; }
+	51.72% { background-position: 16.6666666666667% 50%; }
+	55.17% { background-position: 33.3333333333333% 50%; }
+	58.62% { background-position: 50% 50%; }
+	62.07% { background-position: 66.6666666666667% 50%; }
+	65.52% { background-position: 83.3333333333333% 50%; }
+	68.97% { background-position: 100% 50%; }
+	72.41% { background-position: 0% 75%; }
+	75.86% { background-position: 16.6666666666667% 75%; }
+	79.31% { background-position: 33.3333333333333% 75%; }
+	82.76% { background-position: 50% 75%; }
+	86.21% { background-position: 66.6666666666667% 75%; }
+	89.66% { background-position: 83.3333333333333% 75%; }
+	93.10% { background-position: 100% 75%; }
+	96.55% { background-position: 0% 100%; }
+	100.00% { background-position: 16.6666666666667% 100%; }
+}
+
+@keyframes xgdh4 {
+	0% { background-position: 0% 0%; }
+	1.69% { background-position: 16.6666666666667% 0%; }
+	3.39% { background-position: 33.3333333333333% 0%; }
+	5.08% { background-position: 50% 0%; }
+	6.78% { background-position: 66.6666666666667% 0%; }
+	8.47% { background-position: 83.3333333333333% 0%; }
+	10.17% { background-position: 100% 0%; }
+	11.86% { background-position: 0% 12.5%; }
+	13.56% { background-position: 16.6666666666667% 12.5%; }
+	15.25% { background-position: 33.3333333333333% 12.5%; }
+	16.95% { background-position: 50% 12.5%; }
+	18.64% { background-position: 66.6666666666667% 12.5%; }
+	20.34% { background-position: 83.3333333333333% 12.5%; }
+	22.03% { background-position: 100% 12.5%; }
+	23.73% { background-position: 0% 25%; }
+	25.42% { background-position: 16.6666666666667% 25%; }
+	27.12% { background-position: 33.3333333333333% 25%; }
+	28.81% { background-position: 50% 25%; }
+	30.51% { background-position: 66.6666666666667% 25%; }
+	32.20% { background-position: 83.3333333333333% 25%; }
+	33.90% { background-position: 100% 25%; }
+	35.59% { background-position: 0% 37.5%; }
+	37.29% { background-position: 16.6666666666667% 37.5%; }
+	38.98% { background-position: 33.3333333333333% 37.5%; }
+	40.68% { background-position: 50% 37.5%; }
+	42.37% { background-position: 66.6666666666667% 37.5%; }
+	44.07% { background-position: 83.3333333333333% 37.5%; }
+	45.76% { background-position: 100% 37.5%; }
+	47.46% { background-position: 0% 50%; }
+	49.15% { background-position: 16.6666666666667% 50%; }
+	50.85% { background-position: 33.3333333333333% 50%; }
+	52.54% { background-position: 50% 50%; }
+	54.24% { background-position: 66.6666666666667% 50%; }
+	55.93% { background-position: 83.3333333333333% 50%; }
+	57.63% { background-position: 100% 50%; }
+	59.32% { background-position: 0% 62.5%; }
+	61.02% { background-position: 16.6666666666667% 62.5%; }
+	62.71% { background-position: 33.3333333333333% 62.5%; }
+	64.41% { background-position: 50% 62.5%; }
+	66.10% { background-position: 66.6666666666667% 62.5%; }
+	67.80% { background-position: 83.3333333333333% 62.5%; }
+	69.49% { background-position: 100% 62.5%; }
+	71.19% { background-position: 0% 75%; }
+	72.88% { background-position: 16.6666666666667% 75%; }
+	74.58% { background-position: 33.3333333333333% 75%; }
+	76.27% { background-position: 50% 75%; }
+	77.97% { background-position: 66.6666666666667% 75%; }
+	79.66% { background-position: 83.3333333333333% 75%; }
+	81.36% { background-position: 100% 75%; }
+	83.05% { background-position: 0% 87.5%; }
+	84.75% { background-position: 16.6666666666667% 87.5%; }
+	86.44% { background-position: 33.3333333333333% 87.5%; }
+	88.14% { background-position: 50% 87.5%; }
+	89.83% { background-position: 66.6666666666667% 87.5%; }
+	91.53% { background-position: 83.3333333333333% 87.5%; }
+	93.22% { background-position: 100% 87.5%; }
+	94.92% { background-position: 0% 100%; }
+	96.61% { background-position: 16.6666666666667% 100%; }
+	98.31% { background-position: 33.3333333333333% 100%; }
+	100.00% { background-position: 50% 100%; }
+}
+
+@keyframes xgdh5 {
+	0% { background-position: 0% 0%; }
+	3.85% { background-position: 16.6666666666667% 0%; }
+	7.69% { background-position: 33.3333333333333% 0%; }
+	11.54% { background-position: 50% 0%; }
+	15.38% { background-position: 66.6666666666667% 0%; }
+	19.23% { background-position: 83.3333333333333% 0%; }
+	23.08% { background-position: 100% 0%; }
+	26.92% { background-position: 0% 33.3333333333333%; }
+	30.77% { background-position: 16.6666666666667% 33.3333333333333%; }
+	34.62% { background-position: 33.3333333333333% 33.3333333333333%; }
+	38.46% { background-position: 50% 33.3333333333333%; }
+	42.31% { background-position: 66.6666666666667% 33.3333333333333%; }
+	46.15% { background-position: 83.3333333333333% 33.3333333333333%; }
+	50.00% { background-position: 100% 33.3333333333333%; }
+	53.85% { background-position: 0% 66.6666666666667%; }
+	57.69% { background-position: 16.6666666666667% 66.6666666666667%; }
+	61.54% { background-position: 33.3333333333333% 66.6666666666667%; }
+	65.38% { background-position: 50% 66.6666666666667%; }
+	69.23% { background-position: 66.6666666666667% 66.6666666666667%; }
+	73.08% { background-position: 83.3333333333333% 66.6666666666667%; }
+	76.92% { background-position: 100% 66.6666666666667%; }
+	80.77% { background-position: 0% 100%; }
+	84.62% { background-position: 16.6666666666667% 100%; }
+	88.46% { background-position: 33.3333333333333% 100%; }
+	92.31% { background-position: 50% 100%; }
+	96.15% { background-position: 66.6666666666667% 100%; }
+	100.00% { background-position: 83.3333333333333% 100%; }
+}
+@keyframes xgdh6 {
+	0% { background-position: 0% 0%; }
+	3.33% { background-position: 16.6666666666667% 0%; }
+	6.67% { background-position: 33.3333333333333% 0%; }
+	10.00% { background-position: 50% 0%; }
+	13.33% { background-position: 66.6666666666667% 0%; }
+	16.67% { background-position: 83.3333333333333% 0%; }
+	20.00% { background-position: 100% 0%; }
+	23.33% { background-position: 0% 25%; }
+	26.67% { background-position: 16.6666666666667% 25%; }
+	30.00% { background-position: 33.3333333333333% 25%; }
+	33.33% { background-position: 50% 25%; }
+	36.67% { background-position: 66.6666666666667% 25%; }
+	40.00% { background-position: 83.3333333333333% 25%; }
+	43.33% { background-position: 100% 25%; }
+	46.67% { background-position: 0% 50%; }
+	50.00% { background-position: 16.6666666666667% 50%; }
+	53.33% { background-position: 33.3333333333333% 50%; }
+	56.67% { background-position: 50% 50%; }
+	60.00% { background-position: 66.6666666666667% 50%; }
+	63.33% { background-position: 83.3333333333333% 50%; }
+	66.67% { background-position: 100% 50%; }
+	70.00% { background-position: 0% 75%; }
+	73.33% { background-position: 16.6666666666667% 75%; }
+	76.67% { background-position: 33.3333333333333% 75%; }
+	80.00% { background-position: 50% 75%; }
+	83.33% { background-position: 66.6666666666667% 75%; }
+	86.67% { background-position: 83.3333333333333% 75%; }
+	90.00% { background-position: 100% 75%; }
+	93.33% { background-position: 0% 100%; }
+	96.67% { background-position: 16.6666666666667% 100%; }
+	100.00% { background-position: 33.3333333333333% 100%; }
+}
+
+
+
+
+/*---keyframes end----*/
+
+/*---white matts----*/
+#dz1_zz {
+    background: white;
+    left: 1059.5px;
+    top: 405.25px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.3,0.3);
+    overflow: hidden;
+    display: none;
+    position: absolute; 
+}
+#dz2_zz {
+    background: white;
+    left: 1059.5px;
+    top: 643.25px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.3,0.3);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: none;
+    position: absolute; 
+}
+#dz3_zz {
+    background: white;
+    left: 1061.5px;
+    top: 885.25px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.3,0.3);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: none;
+    position: absolute; 
+}
+#dz4_zz {
+    background: white;
+    left: 1059.5px;
+    top: 1203px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.3,0.3);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: none;
+    position: absolute; 
+}
+#dz5_zz {
+    background: white;
+    left: 1059.5px;
+    top: 1445.75px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.3,0.3);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: none;
+    position: absolute; 
+}
+#dz6_zz {
+    background: white;
+    left: 1059.5px;
+    top: 1689px;
+    width: 256px;
+    height: 256px;
+    transform: translate3D(0,0,0) scale(0.3,0.3);
+transform-origin:50% 50%;
+    overflow: hidden;
+    display: none;
+    position: absolute; 
+}
+/*---white matts end----*/
+    </style>
+</head>
+<body>
+<div id="comp">
+<div id="id9_IMG_2496"></div>
+<div id="dz1_zz"></div>
+<div id="dz2_zz"></div>
+<div id="dz3_zz"></div>
+<div id="dz4_zz"></div>
+<div id="dz5_zz"></div>
+<div id="dz6_zz"></div>
+<div class='' id="dz1"></div>
+<div id="dz2"></div>
+<div id="dz3"></div>
+<div id="dz4"></div>
+<div id="dz5"></div>
+<div id="dz6"></div>
+</div>
+<script>
+    var hh=window.innerHeight;
+    var ww=window.innerWidth;
+    var rr=hh/2208;
+    var offset=(2208*rr-hh)/2;
+    var comp=document.getElementById('comp');
+    window.onload = function(){
+        //comp.style.opacity = '0.5';
+        comp.style.transform = 'translate3D(0,'+offset+'px,0) scale('+rr+')';
+        //comp.style.WebkitTransform = 'translate3D(0,-'+offset.toFixed(2)+'px,0) scale('+rr+');';
+    }  
+    const clickEvent = (function() {
+    if ('ontouchstart' in document.documentElement === true)
+        return 'touchstart';
+    else
+        return 'click';
+    })();
+
+var divTemp = [];
+var divTemp2 = [];
+
+for(var i=1;i<7;i++){
+    var idTemp = 'dz'+i;
+    divTemp.push(document.getElementById(idTemp));
+    divTemp2.push(document.getElementById(idTemp+'_zz'));
+    //console.log(divTemp)
+}
+
+    var dzz1=divTemp[0];
+    var dzz2=divTemp[1];
+    var dzz3=divTemp[2];
+    var dzz4=divTemp[3];
+    var dzz5=divTemp[4];
+    var dzz6=divTemp[5];
+
+
+    var dzzz1=divTemp2[0];
+    var dzzz2=divTemp2[1];
+    var dzzz3=divTemp2[2];
+    var dzzz4=divTemp2[3];
+    var dzzz5=divTemp2[4];
+    var dzzz6=divTemp2[5];
+
+
+    dzz1.addEventListener(clickEvent, () =>{
+        // console.log(dzz1)
+        // console.log(window.getComputedStyle(dzz1).getPropertyValue('animation-name'));
+        if(window.getComputedStyle(dzz1).getPropertyValue('animation-name') == 'xgdh1'){
+            console.log("dzz1.style");
+            dzz1.setAttribute("class",'');
+            dzzz1.style.display = "none";
+        }else{
+            console.log(dzzz1.style.display)
+            //dzz1.style.animationName = 'xgdh1';
+            dzz1.setAttribute("class",'dzc1');
+            setTimeout(()=>{
+                dzzz1.style.display = "block";
+            },50);
+            
+            //dzz1.style['animationName'] = 'xgdh1';
+        }
+
+
+    });
+    dzz2.addEventListener(clickEvent, () =>{
+        if(window.getComputedStyle(dzz2).getPropertyValue('animation-name') == 'xgdh2'){
+            console.log("dzz1.style");
+            dzz2.setAttribute("class",'');
+            dzzz2.style.display = "none";
+        }else{
+            console.log(dzzz2.style.display)
+            dzz2.setAttribute("class",'dzc2');
+            setTimeout(()=>{
+                dzzz2.style.display = "block";
+            },50);
+        }
+    });
+    dzz3.addEventListener(clickEvent, () =>{
+        if(window.getComputedStyle(dzz3).getPropertyValue('animation-name') == 'xgdh3'){
+
+            dzz3.setAttribute("class",'');
+            dzzz3.style.display = "none";
+        }else{
+            console.log(dzzz3.style.display)
+            dzz3.setAttribute("class",'dzc3');
+            setTimeout(()=>{
+                dzzz3.style.display = "block";
+            },50);
+        }
+    });
+    dzz4.addEventListener(clickEvent, () =>{
+        if(window.getComputedStyle(dzz4).getPropertyValue('animation-name') == 'xgdh4'){
+            console.log("dzz1.style");
+            dzz4.setAttribute("class",'');
+            dzzz4.style.display = "none";
+        }else{
+            console.log(dzzz4.style.display)
+            dzz4.setAttribute("class",'dzc4');
+            setTimeout(()=>{
+                dzzz4.style.display = "block";
+            },50);
+        }
+    });
+    dzz5.addEventListener(clickEvent, () =>{
+        if(window.getComputedStyle(dzz5).getPropertyValue('animation-name') == 'xgdh5'){
+            console.log("dzz1.style");
+            dzz5.setAttribute("class",'');
+            dzzz5.style.display = "none";
+        }else{
+            console.log(dzzz5.style.display)
+            dzz5.setAttribute("class",'dzc5');
+            setTimeout(()=>{
+                dzzz5.style.display = "block";
+            },50);
+        }
+    });
+    dzz6.addEventListener(clickEvent, () =>{
+        if(window.getComputedStyle(dzz6).getPropertyValue('animation-name') == 'xgdh6'){
+            console.log("dzz1.style");
+            dzz6.setAttribute("class",'');
+            dzzz6.style.display = "none";
+        }else{
+            console.log(dzzz6.style.display)
+            dzz6.setAttribute("class",'dzc6');
+            setTimeout(()=>{
+                dzzz6.style.display = "block";
+            },50);
+        }
+    });
+
+    //document.body.addEventListener(clickEvent, playAndDraw);
+</script>
+</body>
+</html>
