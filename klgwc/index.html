@@ -1,0 +1,749 @@
+<!--Generated via AE2MatterJS by BigXiXi-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=880,user-scalable=no" /> 
+    <title>购物车迷宫demo</title>
+    <script src='matter.min.js'></script>   
+<style>
+       *{ margin: 0; padding: 0;}
+       canvas {
+            position:absolute; 
+            z-index:-1;
+        }
+		html{
+			position: relative;
+			width:100%;
+			height:100%;
+		}
+		body{
+			width:100%;
+            height: 100%;
+			position: relative;
+			margin: 0 auto;
+			padding: 0;
+		}
+        #ttt{
+            position: fixed;
+            left:50px;
+            top:50px;
+            font-size: 30px;
+            color: darkred;
+        }
+        #matt{
+            position: fixed;
+            display: none;
+            opacity: 0.5;
+            background: black;
+            width: 200%;
+            height: 200%;
+        }
+        #score{
+            position: absolute;
+            background: #EB3A3E;
+            /* line-height: 250px;  */
+            text-align: center;
+            color: azure;
+            font-size: 40px;
+            vertical-align: middle;
+            display: none;
+            border-radius: 5%;
+            width: 500px;
+            height: 250px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1,1);
+        }
+        .ani{
+            animation: scaleUP 0.8s linear 0s forwards;
+        }
+        @keyframes scaleUP{
+                0%{
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                20%{
+                    transform: translate(-50%, -50%) scale(1.5);
+                }
+                40%{
+                    transform: translate(-50%, -50%) scale(0.7);
+                }
+                60%{
+                    transform: translate(-50%, -50%) scale(1.1);
+                }
+                80%{
+                    transform: translate(-50%, -50%) scale(0.95);
+                }
+                100%{
+                    transform: translate(-50%, -50%) scale(1);
+                }
+			}
+</style>
+ <body>
+     
+     <div id='matt'></div>
+     <div class='' id='score'></div>
+     <div id='ttt'></div>
+     <div id='lottie'></div>
+     <canvas id='canvas'></canvas>
+     <script>
+         var time=0;
+         //适配
+        window.onload = res();
+        window.onresize = res();
+        function res(){
+            var cvs = document.getElementById('canvas');
+            var ltt = document.getElementById('lottie');
+            ratio = window.innerWidth/750;
+            ofs = (window.innerWidth - 750)/2;
+            cvs.style="transform-origin:50% 0%;transform:translate("+ofs+"px,0px) scale("+ratio+");";
+            ltt.style="transform-origin:50% 0%;transform:translate("+ofs+"px,0px) scale("+ratio+");";
+        }
+         //手机陀螺仪（安卓效果待测试）
+        function handleOrientation(event) {
+          var x = event.gamma; // In degree in the range [-90,90]
+          var y = event.beta; // In degree in the range [-180,180]
+          var z = event.alpha; //??
+         
+
+          const scale = 0.02;
+          engine.world.gravity.y = y * scale;
+          engine.world.gravity.x = x * scale;
+          //rotate works, but not that cool
+          //game.angle = z * 2 * Math.PI / 360;
+        }
+        window.addEventListener('deviceorientation', handleOrientation);
+
+
+            // module aliases
+        var Engine = Matter.Engine,
+            Render = Matter.Render,
+            World = Matter.World,
+            Bodies = Matter.Bodies;
+
+        // create an engine
+        var engine = Engine.create();
+
+        // create a renderer
+        var cvs = document.getElementById('canvas');
+        var render = Render.create({
+            element: document.body,
+            canvas: cvs,
+            engine: engine,
+            options: {
+                width: 750,
+                height:1334,
+                background: 'mgg.png',
+                wireframes: false,
+                showAngleIndicator: false
+        }
+        });
+
+        //构建迷宫
+        var Ball = Bodies.circle(375, 100,12, {
+                isStatic: false,
+                render: {
+                    sprite: {
+                        texture: 'gwc.png',
+                        xScale: 0.7,
+                        yScale: 0.7
+                    }
+                }}
+            );
+            var wall1 = Bodies.rectangle(7, 667, -118, 1334,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var wall2 = Bodies.rectangle(739, 667, -118, 1334,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var wall3 = Bodies.rectangle(367, 1331, -754, -9.99999999999997,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var wall4 = Bodies.rectangle(375, 11, -754, -9.99999999999997,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj84 = Bodies.rectangle(227, 262, 306, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj83 = Bodies.rectangle(285, 494, 306, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj82 = Bodies.rectangle(489, 318, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj81 = Bodies.rectangle(437, 374, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj80 = Bodies.rectangle(135, 378, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj79 = Bodies.rectangle(437, 406, 7.5, 198.76,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj78 = Bodies.rectangle(259, 936, 7.5, 198.76,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj77 = Bodies.rectangle(257, 678, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj76 = Bodies.rectangle(255, 316, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj75 = Bodies.rectangle(199, 284, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj74 = Bodies.rectangle(313, 338, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj73 = Bodies.rectangle(375, 288, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj72 = Bodies.rectangle(553, 290, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj71 = Bodies.rectangle(555, 398, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj70 = Bodies.rectangle(613, 290, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj69 = Bodies.rectangle(555, 576, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj68 = Bodies.rectangle(613, 642, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj67 = Bodies.rectangle(437, 762, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj66 = Bodies.rectangle(373, 702, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj65 = Bodies.rectangle(317, 452, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj64 = Bodies.rectangle(199, 458, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj63 = Bodies.rectangle(137, 400, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj62 = Bodies.rectangle(141, 522, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj61 = Bodies.rectangle(257, 526, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj60 = Bodies.rectangle(195, 640, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj59 = Bodies.rectangle(141, 940, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj58 = Bodies.rectangle(197, 940, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj57 = Bodies.rectangle(317, 994, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj56 = Bodies.rectangle(375, 936, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj55 = Bodies.rectangle(139, 1058, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj54 = Bodies.rectangle(195, 1056, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj53 = Bodies.rectangle(257, 1112, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj52 = Bodies.rectangle(435, 1112, 7.5, 53.36,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj51 = Bodies.rectangle(613, 434, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj50 = Bodies.rectangle(555, 724, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj49 = Bodies.rectangle(495, 608, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj48 = Bodies.rectangle(377, 556, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj47 = Bodies.rectangle(141, 676, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj46 = Bodies.rectangle(435, 896, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj45 = Bodies.rectangle(315, 788, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj44 = Bodies.rectangle(553, 1080, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj43 = Bodies.rectangle(495, 1018, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj42 = Bodies.rectangle(611, 1084, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj41 = Bodies.rectangle(555, 908, 7.5, 118.72,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj40 = Bodies.rectangle(613, 844, 11.5, 234.720000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj39 = Bodies.rectangle(171, 318, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj38 = Bodies.rectangle(289, 316, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj37 = Bodies.rectangle(645, 376, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj36 = Bodies.rectangle(637, 556, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj35 = Bodies.rectangle(469, 556, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj34 = Bodies.rectangle(345, 556, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj33 = Bodies.rectangle(169, 556, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj32 = Bodies.rectangle(291, 672, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj31 = Bodies.rectangle(459, 790, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj30 = Bodies.rectangle(521, 856, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj29 = Bodies.rectangle(521, 908, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj28 = Bodies.rectangle(645, 906, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj27 = Bodies.rectangle(229, 972, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj26 = Bodies.rectangle(289, 910, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj25 = Bodies.rectangle(461, 1026, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj24 = Bodies.rectangle(109, 1086, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj23 = Bodies.rectangle(107, 970, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj22 = Bodies.rectangle(285, 1088, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj21 = Bodies.rectangle(407, 1088, 67.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj20 = Bodies.rectangle(315, 432, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj19 = Bodies.rectangle(549, 434, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj18 = Bodies.rectangle(549, 492, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj17 = Bodies.rectangle(617, 614, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj16 = Bodies.rectangle(371, 614, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj15 = Bodies.rectangle(141, 612, 130, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj14 = Bodies.rectangle(293, 734, 178, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj13 = Bodies.rectangle(521, 736, 178, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj12 = Bodies.rectangle(499, 966, 245.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj11 = Bodies.rectangle(257, 1028, 245.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj10 = Bodies.rectangle(135, 850, 110.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj9 = Bodies.rectangle(135, 794, 110.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj8 = Bodies.rectangle(319, 796, 110.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj7 = Bodies.rectangle(309, 850, 110.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj6 = Bodies.rectangle(495, 668, 110.5, 11.9999999999999,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj5 = Bodies.rectangle(199, 1146, 238.5, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj4 = Bodies.rectangle(535, 1146, 291, 12.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj3 = Bodies.rectangle(75, 702, -9.99999999999993, -891.999999999992,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj2 = Bodies.rectangle(675, 702, -9.99999999999993, -891.999999999992,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        var obj1 = Bodies.rectangle(558, 258, 236, 14.0000000000001,{ 
+                    isStatic: true,
+           render: {
+                                visible: false
+                            }
+                });
+        // add all of the bodies to the world
+        World.add(engine.world, [Ball,wall1,wall2,wall3,wall4,obj84,obj83,obj82,obj81,obj80,obj79,obj78,obj77,obj76,obj75,obj74,obj73,obj72,obj71,obj70,obj69,obj68,obj67,obj66,obj65,obj64,obj63,obj62,obj61,obj60,obj59,obj58,obj57,obj56,obj55,obj54,obj53,obj52,obj51,obj50,obj49,obj48,obj47,obj46,obj45,obj44,obj43,obj42,obj41,obj40,obj39,obj38,obj37,obj36,obj35,obj34,obj33,obj32,obj31,obj30,obj29,obj28,obj27,obj26,obj25,obj24,obj23,obj22,obj21,obj20,obj19,obj18,obj17,obj16,obj15,obj14,obj13,obj12,obj11,obj10,obj9,obj8,obj7,obj6,obj5,obj4,obj3,obj2,obj1]);
+
+        // run the engine
+        Engine.run(engine);
+
+        // run the renderer
+        Render.run(render);   
+
+
+        var theX; 
+        var theY;
+        var flag = 0;
+        var show = document.getElementById('ttt');
+        function getPos(){
+            theX = Ball.position.x;
+            theY = Ball.position.y;
+            //244入门1129出门
+            if(theY>=244 && theY<1129){
+                time+=0.0166;
+                show.innerHTML = "用时："+time.toFixed(1);
+                
+                //flag = 1;
+                //requestAnimationFrame(getPos);
+                //cancelAnimationFrame(getPos);
+                //return;
+            }else if(theY >= 1129){
+                // cancelAnimationFrame(getPos);
+                // var canv = document.getElementById('canvas');
+                // var canv2d = canv.getContext("2d");
+                //     canv2d.clearRect(0,0,3000,3000);
+                
+                show.innerHTML = '过关！您的时间：'+time.toFixed(1);
+                //Matter.Engine.clear(engine);
+                
+                //Engine.enabled = false;
+                loadend(time.toFixed(1));
+                return;
+            }else{
+                //show.innerHTML = 'Ball PosY: ' + theY.toFixed(2);
+            }
+
+            requestAnimationFrame(getPos);
+                
+                
+        }
+        requestAnimationFrame(getPos);
+        //end effect
+       
+
+        function loadend(miao){
+            var theMatt = document.getElementById('matt');
+                theMatt.style.display = 'block';
+            var theText = document.getElementById('score');
+                theText.className = 'ani';
+                theText.style.display = 'block';
+                theText.innerHTML = '恭喜过关!\n'+'</br>'+'您的时间为'+'</br>'+miao+'秒'+'</br>'+'获得奖励XXXX';
+            
+
+        }
+
+        // Matter.Events.on(engine, 'collisionStart', function(event) {
+
+        // });
+    </script>
+ </body>
+ </html>
