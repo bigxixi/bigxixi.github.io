@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"></meta> 
+        <style>
+            *{
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+            /* html{
+                position: relative;
+                width:100%;
+                height:100%;
+            } */
+            .fullpage{
+                background: transparent;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                /* overflow: hidden; */
+                position: relative;
+                transform: translate3D(0,0,0) scale(1);
+                transform-origin:50% 0%;
+                /* background: lightgray; */
+            }
+            .theVideoBG{
+                position: absolute;
+                top:calc(50vh - 50vw * 1624 / 750);
+                width: 100%;
+                pointer-events: none;
+            }
+            .optionGroup_p3{
+                left: 16vw;
+                /* top: 90vw; */
+                width: 55.185vw;
+                height: 9.63vw;
+                transform-style: preserve-3d;
+                /* transform: translate3D(0,0,0vw) rotate(0.00deg) scale(1.00,1.00); */
+                opacity: 1.00;
+                transform-origin:13.6% 50%;
+                display: block;
+                overflow: visible;
+                position: absolute; 
+            }
+            .optionABC_p3{
+                left: 0vw;
+                top: 0vw;
+                width: 7.5vw;
+                height: 9.63vw;
+                transform-style: preserve-3d;
+                transform: skewY(30deg);
+                opacity: 1.00;
+                transform-origin:100% 50%;
+                display: block;
+                position: absolute; 
+                /* border: 0.278vw solid #000000; */
+            }
+
+            .optionText_p3{
+
+                left: 7.2vw;
+                top: 0vw;
+                width: 47.7vw;
+                height: 9.63vw;
+                transform-style: preserve-3d;
+                /* transform: skewY(10deg); */
+                opacity: 1.00;
+                transform-origin:0% 50%;
+                display: block;
+                overflow: auto;
+                position: absolute; 
+                /* border: 0.278vw solid #000000; */
+
+            }
+            .optionA_p3{
+                top: 35vh;
+            }
+            .optionB_p3{
+                top: 55vh;
+            }
+            .optionC_p3{
+                top: 75vh;
+            }
+
+            .optionA_p3_BG{
+                background: url("http://bethe.top/163/color-quits/imgs/p3_a.png");
+                background-size: cover;
+            }
+            .optionAText_p3_BG{
+                background: url("http://bethe.top/163/color-quits/imgs/p3_a_text.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-origin: 0% 50%;
+            }
+
+            .optionB_p3_BG{
+                background: url("http://bethe.top/163/color-quits/imgs/p3_b.png");
+                background-size: cover;
+            }
+            .optionBText_p3_BG{
+                background: url("http://bethe.top/163/color-quits/imgs/p3_b_text.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-origin: 0% 50%;
+            }
+            .optionC_p3_BG{
+                background: url("http://bethe.top/163/color-quits/imgs/p3_c.png");
+                background-size: cover;
+            }
+            .optionCText_p3_BG{
+                background: url("http://bethe.top/163/color-quits/imgs/p3_c_text.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-origin: 0% 50%;
+            }
+            .optionTextChoosenBG{
+                left: 0vw;
+                top: 0vw;
+                /* width: 7.5vw; */
+                height: 9.63vw;
+                transform-style: preserve-3d;
+                /* transform: skewY(20deg); */
+                /* opacity: 0; */
+                transform-origin:0% 50%;
+                display: block;
+                position: absolute; 
+                background: rgb(85, 85, 85);
+                transition: all 0.3s linear;
+            }
+            .title{
+                left: 14.8148vw;
+                top: 8.3333vw;
+                width: 69.5vw;
+                height: 19.4444vw;
+                transform-style: preserve-3d;
+                transform: rotate(0deg) scale(1,1);
+                opacity: 1;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                overflow: visible;
+                position: absolute; 
+            }
+
+            .title03{
+                background: url('http://bethe.top/163/color-quits/imgs/title03.png');
+                background-size: contain;
+            }
+
+            .leftElement{
+                left: 3.3333vw;
+                top: 82.5000vw;
+                width: 2.3148vw;
+                height: 26.6667vw;
+                transform-style: preserve-3d;
+                transform: rotate(0deg) scale(1,1);
+                opacity: 1;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                position: absolute; 
+                mix-blend-mode:normal;
+                background: url('http://bethe.top/163/color-quits/imgs/leftElement.png');
+                background-size: cover;
+            }
+            .rightElement{
+                right: 5.27vw;
+                top: 75.5556vw;
+                width: 1.9444vw;
+                height: 42.5000vw;
+                transform-style: preserve-3d;
+                transform: rotate(0deg) scale(1,1);
+                opacity: 1;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                position: absolute; 
+                mix-blend-mode:normal;
+                background: url('http://bethe.top/163/color-quits/imgs/rightElement.png');
+                background-size: cover;
+            }
+            .bottomElement{
+                left: 4.8148vw;
+                bottom: 2vw;
+                width: 90.1852vw;
+                height: 5.0000vw;
+                transform-style: preserve-3d;
+                transform: rotate(0deg) scale(1,1);
+                opacity: 1;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                position: absolute; 
+                mix-blend-mode:normal;
+                background: url('http://bethe.top/163/color-quits/imgs/bottomElement.png');
+                background-size: cover;
+            }
+
+
+            .textInfo{
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                font-size: 99px;
+                color:black;
+            }
+            .page2{
+                background:transparent;
+                background-size: cover;
+                left: 0;
+                top:0;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                overflow: hidden;
+                position: absolute;
+            }
+
+            .optionInAniA{
+                animation: optionInAniKey 0.4s ease-out 0s 1 normal both;
+            }
+            .optionInAniB{
+                animation: optionInAniKey 0.4s ease-out 0.2s 1 normal both;
+            }
+            .optionInAniC{
+                animation: optionInAniKey 0.4s ease-out 0.4s 1 normal both;
+            }
+            @keyframes optionInAniKey {
+                0%{
+                    opacity: 0;
+                    transform: scaleX(0.5);
+                }
+                100%{
+                    opacity: 1;
+                    transform: scaleX(1);
+                }
+            }
+
+            .optionChoosenAni{
+                animation: optionChoosenAniKey 0.5s cubic-bezier(.38,1.5,.5,1.01) 0s 1 normal both;
+            }
+            @keyframes optionChoosenAniKey {
+                0%{
+                    transform: skewY(0) scaleX(1);
+                }
+                100%{
+                    transform: skewY(-15deg) scaleX(0.5);
+                }
+            }
+        </style>
+	</head>
+	<body>
+		<div class="fullpage">
+                <!-- 第三页 三个选项 -->
+                <div class="optionGroup_p3 optionA_p3 optionInAniA">
+                    <div class="optionABC_p3 optionA_p3_BG"></div>
+                    <div class="optionText_p3 optionAText_p3_BG">
+                        <div class="optionTextChoosenBG" style="opacity: 0;width:32vw;"></div>
+                    </div>
+                </div>
+                <div class="optionGroup_p3 optionB_p3 optionInAniB">
+                    <div class="optionABC_p3 optionB_p3_BG"></div>
+                    <div class="optionText_p3 optionBText_p3_BG">
+                        <div class="optionTextChoosenBG" style="opacity: 0;width:42vw;"></div>
+                    </div>
+                </div>
+                <div class="optionGroup_p3 optionC_p3 optionInAniC">
+                    <div class="optionABC_p3 optionC_p3_BG"></div>
+                    <div class="optionText_p3 optionCText_p3_BG">
+                        <div class="optionTextChoosenBG" style="opacity: 0;width:46vw;"></div>
+                    </div>
+                </div>
+		</div>
+		
+		<script>
+			//阻止 iOS 橡皮筋效果
+			document.body.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {passive: false}); 
+
+			//获取需要动画的dom节点
+			let fullpage = document.querySelector('.fullpage');
+            // let p1textInfo = document.querySelector(".p1textInfo");
+			let p2textInfo = document.querySelector('.p2textInfo');
+			let p2Contents = document.querySelector('.p2Contents');
+
+            let optionA = document.querySelector(".optionA_p3");
+            let optionB = document.querySelector(".optionB_p3");
+            let optionC = document.querySelector(".optionC_p3");
+
+
+			// 点击选项并翻页
+			optionA.addEventListener("click",(e)=>{
+                optionA.querySelector(".optionText_p3").classList.add("optionChoosenAni");
+                optionA.querySelector(".optionTextChoosenBG").style.opacity="0.3";
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+			},{passive:true})
+            optionB.addEventListener("click",(e)=>{
+                optionB.querySelector(".optionText_p3").classList.add("optionChoosenAni");
+                optionB.querySelector(".optionTextChoosenBG").style.opacity="0.3";
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+			},{passive:true})
+            optionC.addEventListener("click",(e)=>{
+                optionC.querySelector(".optionText_p3").classList.add("optionChoosenAni");
+                optionC.querySelector(".optionTextChoosenBG").style.opacity="0.3";
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+			},{passive:true})
+			
+		</script>
+	</body>
+</html>

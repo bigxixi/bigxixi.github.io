@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"></meta> 
+        <style>
+            *{
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+            /* html{
+                position: relative;
+                width:100%;
+                height:100%;
+            } */
+            .fullpage{
+                background: transparent;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                /* overflow: hidden; */
+                position: relative;
+                transform: translate3D(0,0,0) scale(1,1);
+                transform-origin:50% 0%;
+                background: lightgray;
+            }
+
+            .textInfo{
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                font-size: 99px;
+                color:black;
+            }
+            .page2{
+                background:transparent;
+                background-size: cover;
+                left: 0;
+                top:0;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                overflow: hidden;
+                position: absolute;
+            }
+
+            .aniDelayA{
+                animation-delay: 0s;
+            }
+
+            .aniDelayB{
+                animation-delay: 0.2s;
+            }
+
+            .aniDelayC{
+                animation-delay: 0.4s;
+            }
+
+                
+            .fadeOut{
+                transition: all 0.2s linear;
+                opacity: 0;
+            }
+            .bubbleOption_A{
+                left: 23.6667vw;
+                top: 60.5333vw;
+                width: 55.5vw;
+                height: 55.5vw;
+                opacity: 1.00;
+                display: block;
+                position: absolute; 
+            }
+            .bubbleOptionBG_A{
+
+                background:url("assets/imgs/bubbleOptionA.png");
+                background-size: cover;
+            }
+
+            .bubbleOption_B{
+                left: 35.6667vw;
+                top: 123.5333vw;
+                width: 55.5vw;
+                height: 55.5vw;
+                opacity: 1.00;
+                display: block;
+                position: absolute; 
+            }
+            .bubbleOptionBG_B{
+
+                background:url("assets/imgs/bubbleOptionB.png");
+                background-size: cover;
+            }
+
+
+
+            .bubbleOptionIn{
+                animation-name: bubbleOptionInKey;
+                animation-duration: 0.5s;
+                animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+                animation-iteration-count: 1;
+                animation-fill-mode: both;
+            }
+
+            @keyframes bubbleOptionInKey {
+                0%{
+                    opacity: 0;
+                    transform: scale(0.9);
+                }
+                50%{
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+                100%{
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            .bubbleExplode{
+                
+                width: 500px;
+                height: 500px;
+                transform-origin: 0% 0%;
+                transform: scale(0.46);
+            }
+            .bubbleExplodeAni{
+                background-image: url('assets/imgs/bubbleExpo.png');
+                animation: bubbleExplodeKey 0.44s steps(1) 1 normal both;
+            }
+
+            @keyframes bubbleExplodeKey {
+                0% { background-position: 0px 0px; }
+                10.00% { background-position: -500px 0px; }
+                20.00% { background-position: -1000px 0px; }
+                30.00% { background-position: -1500px 0px; }
+                40.00% { background-position: -2000px 0px; }
+                50.00% { background-position: 0px -500px; }
+                60.00% { background-position: -500px -500px; }
+                70.00% { background-position: -1000px -500px; }
+                80.00% { background-position: -1500px -500px; }
+                90.00% { background-position: -2000px -500px; }
+                100.00% { background-position: 0px -1000px; }
+            }
+
+
+
+
+        </style>
+	</head>
+	<body>
+		<div class="fullpage">
+                <!-- 第八页 两个选项 -->
+  
+                  <div class="bubbleOption_B bubbleOptionBG_B bubbleOptionIn aniDelayB">
+                    <div class="bubbleExplode"></div>
+                  </div>
+                  <div class="bubbleOption_A bubbleOptionBG_A bubbleOptionIn aniDelayA">
+                    <div class="bubbleExplode"></div>
+                  </div>
+
+		</div>
+		
+		<script>
+			//阻止 iOS 橡皮筋效果
+			document.body.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {passive: false}); 
+
+			let cWidth = window.innerWidth;
+			let cHeight = window.innerHeight;
+
+			//获取需要动画的dom节点
+			let fullpage = document.querySelector('.fullpage');
+            // let p1textInfo = document.querySelector(".p1textInfo");
+			let p2textInfo = document.querySelector('.p2textInfo');
+			let p2Contents = document.querySelector('.p2Contents');
+
+            let optionA = document.querySelector(".bubbleOption_A");
+            let optionB = document.querySelector(".bubbleOption_B");
+
+
+            //由于涉及精灵图动画，需要计算缩放
+            let ratio = window.devicePixelRatio;
+            let scale = window.innerWidth/750;
+
+            optionA.querySelector(".bubbleExplode").style = "transform:scale("+scale*0.8325+")";
+            optionB.querySelector(".bubbleExplode").style = "transform:scale("+scale*0.8325+")";
+
+			// 点击选项并翻页
+			optionA.addEventListener("touchstart",(e)=>{
+                optionA.classList.remove("bubbleOptionBG_A");
+                optionA.querySelector(".bubbleExplode").classList.add("bubbleExplodeAni");
+
+                setTimeout(() => {
+                    location.reload();
+                }, 350);
+
+			},{passive:true})
+
+            //点击选项B
+            optionB.addEventListener("touchstart",(e)=>{
+                optionB.classList.remove("bubbleOptionBG_B");
+                optionB.querySelector(".bubbleExplode").classList.add("bubbleExplodeAni");
+
+                setTimeout(() => {
+                    location.reload();
+                }, 350);
+
+			},{passive:true})
+
+		</script>
+	</body>
+</html>

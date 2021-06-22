@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"></meta> 
+        <style>
+            *{
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+            /* html{
+                position: relative;
+                width:100%;
+                height:100%;
+            } */
+            .fullpage{
+                background: transparent;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                /* overflow: hidden; */
+                position: relative;
+                transform: translate3D(0,0,0) scale(1,1);
+                transform-origin:50% 0%;
+                background: lightgray;
+            }
+
+
+            .textInfo{
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                font-size: 99px;
+                color:black;
+            }
+            .page2{
+                background:transparent;
+                background-size: cover;
+                left: 0;
+                top:0;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                overflow: hidden;
+                position: absolute;
+            }
+
+            .aniDelayA{
+                animation-delay: 0s;
+            }
+
+            .aniDelayB{
+                animation-delay: 0.2s;
+            }
+
+            .aniDelayC{
+                animation-delay: 0.4s;
+            }
+
+                
+            .fadeOut{
+                transition: all 0.2s linear;
+                opacity: 0;
+            }
+            .whaleOptionBG1{
+                background:url("http://bethe.top/163/color-quits/imgs/whaleOptionBG1.png");
+                background-size: cover;
+            }
+            .whaleOptionBG2{
+                background:url("http://bethe.top/163/color-quits/imgs/whaleOptionBG2.png");
+                background-size: cover;
+            }
+            .whaleOptionBG3{
+                background:url("http://bethe.top/163/color-quits/imgs/whaleOptionBG3.png");
+                background-size: cover;
+            }
+            .whaleOptionC{
+                left: 19.6667vw;
+                top: 138.5333vw;
+                width: 51.6000vw;
+                height: 13.3333vw;
+                transform-style: preserve-3d;
+                transform: translate3D(0,0,0vw) rotate(0.00deg) scale(1.00,1.00);
+                opacity: 1.00;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                position: absolute; 
+                filter:hue-rotate(0deg);
+            }
+            .whaleOptionCBG{
+                background: transparent;
+                background-size: cover;
+            }
+            .whaleOptionCAni{
+                /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+                animation:whaleOptionCAniKey 5.00s linear 0.00s infinite normal both;
+            }
+            @keyframes whaleOptionCAniKey{
+                0.00% {opacity: 1.00;}
+                100.00% {opacity: 1.00;}
+                }
+            .whaleOptionCSprite {
+                background-image: url("http://bethe.top/163/color-quits/imgs/whaleOptionCSprite.png");
+                transform-origin: 0% 0%;
+                transform: scale(0.552);
+                width: 387px;
+                height: 100px;
+                /* animation: whaleOptionCSprAniKey 1s steps(1) 0s 1 normal both; */
+            }
+            @keyframes whaleOptionCSprAniKey {
+                0% { background-position: 0 0; }
+                3.45% { background-position: -387px 0px; }
+                6.90% { background-position: -774px 0px; }
+                10.34% { background-position: -1161px 0px; }
+                13.79% { background-position: -1548px 0px; }
+                17.24% { background-position: -1935px 0px; }
+                20.69% { background-position: -2322px 0px; }
+                24.14% { background-position: -2709px 0px; }
+                27.59% { background-position: -3096px 0px; }
+                31.03% { background-position: -3483px 0px; }
+                34.48% { background-position: 0px -100px; }
+                37.93% { background-position: -387px -100px; }
+                41.38% { background-position: -774px -100px; }
+                44.83% { background-position: -1161px -100px; }
+                48.28% { background-position: -1548px -100px; }
+                51.72% { background-position: -1935px -100px; }
+                55.17% { background-position: -2322px -100px; }
+                58.62% { background-position: -2709px -100px; }
+                62.07% { background-position: -3096px -100px; }
+                65.52% { background-position: -3483px -100px; }
+                68.97% { background-position: 0px -200px; }
+                72.41% { background-position: -387px -200px; }
+                75.86% { background-position: -774px -200px; }
+                79.31% { background-position: -1161px -200px; }
+                82.76% { background-position: -1548px -200px; }
+                86.21% { background-position: -1935px -200px; }
+                89.66% { background-position: -2322px -200px; }
+                93.10% { background-position: -2709px -200px; }
+                96.55% { background-position: -3096px -200px; }
+                100.00% { background-position: -3483px -200px; }
+            }
+
+            .whaleOptionB{
+                left: 13.5333vw;
+                top: 103.3333vw;
+                width: 51.6000vw;
+                height: 13.3333vw;
+                transform-style: preserve-3d;
+                transform: translate3D(0,0,0vw) rotate(0.00deg) scale(1.00,1.00);
+                opacity: 1.00;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                position: absolute; 
+                filter:hue-rotate(0deg);
+            }
+            .whaleOptionBBG{
+                background: transparent;
+                background-size: cover;
+            }
+            .whaleOptionBAni{
+                /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+                animation:whaleOptionBAniKey 5.00s linear 0.00s infinite normal both;
+            }
+            @keyframes whaleOptionBAniKey{
+                0.00% {opacity: 1.00;}
+                100.00% {opacity: 1.00;}
+                }
+            .whaleOptionBSprite {
+                background-image: url("http://bethe.top/163/color-quits/imgs/whaleOptionBSprite.png");
+                transform-origin: 0% 0%;
+                transform: scale(0.552);
+                width: 387px;
+                height: 100px;
+                /* animation: whaleOptionBSprAniKey 1s steps(1) 0s 1 normal both; */
+            }
+            @keyframes whaleOptionBSprAniKey {
+                0% { background-position: 0 0; }
+                3.45% { background-position: -387px 0px; }
+                6.90% { background-position: -774px 0px; }
+                10.34% { background-position: -1161px 0px; }
+                13.79% { background-position: -1548px 0px; }
+                17.24% { background-position: -1935px 0px; }
+                20.69% { background-position: -2322px 0px; }
+                24.14% { background-position: -2709px 0px; }
+                27.59% { background-position: -3096px 0px; }
+                31.03% { background-position: -3483px 0px; }
+                34.48% { background-position: 0px -100px; }
+                37.93% { background-position: -387px -100px; }
+                41.38% { background-position: -774px -100px; }
+                44.83% { background-position: -1161px -100px; }
+                48.28% { background-position: -1548px -100px; }
+                51.72% { background-position: -1935px -100px; }
+                55.17% { background-position: -2322px -100px; }
+                58.62% { background-position: -2709px -100px; }
+                62.07% { background-position: -3096px -100px; }
+                65.52% { background-position: -3483px -100px; }
+                68.97% { background-position: 0px -200px; }
+                72.41% { background-position: -387px -200px; }
+                75.86% { background-position: -774px -200px; }
+                79.31% { background-position: -1161px -200px; }
+                82.76% { background-position: -1548px -200px; }
+                86.21% { background-position: -1935px -200px; }
+                89.66% { background-position: -2322px -200px; }
+                93.10% { background-position: -2709px -200px; }
+                96.55% { background-position: -3096px -200px; }
+                100.00% { background-position: -3483px -200px; }
+            }
+
+            .whaleOptionA{
+                left: 8.2000vw;
+                top: 67.6000vw;
+                width: 51.6000vw;
+                height: 13.3333vw;
+                transform-style: preserve-3d;
+                transform: translate3D(0,0,0vw) rotate(0.00deg) scale(1.00,1.00);
+                opacity: 1.00;
+                transform-origin:50.00% 50.00%;
+                display: block;
+                position: absolute; 
+                filter:hue-rotate(0deg);
+            }
+            .whaleOptionABG{
+                background: transparent;
+                background-size: cover;
+            }
+            .whaleOptionAAni{
+                /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+                animation:whaleOptionAAniKey 5.00s linear 0.00s infinite normal both;
+            }
+            @keyframes whaleOptionAAniKey{
+                0.00% {opacity: 1.00;}
+                100.00% {opacity: 1.00;}
+                }
+            .whaleOptionASprite {
+                background-image: url("http://bethe.top/163/color-quits/imgs/whaleOptionASprite.png");
+                transform-origin: 0% 0%;
+                transform: scale(0.552);
+                width: 387px;
+                height: 100px;
+            }
+            .choosenAni_p4_A{
+                animation: whaleOptionASprAniKey 1s steps(1) 0s 1 normal both;
+            }
+            .choosenAni_p4_B{
+                animation: whaleOptionBSprAniKey 1s steps(1) 0s 1 normal both;
+            }
+            .choosenAni_p4_C{
+                animation: whaleOptionCSprAniKey 1s steps(1) 0s 1 normal both;
+            }
+
+            .chooosenBG_p4{
+                transition: all 0.2s linear;
+                filter:hue-rotate(120deg);
+            }
+
+            @keyframes whaleOptionASprAniKey {
+                0% { background-position: 0 0; }
+                3.45% { background-position: -387px 0px; }
+                6.90% { background-position: -774px 0px; }
+                10.34% { background-position: -1161px 0px; }
+                13.79% { background-position: -1548px 0px; }
+                17.24% { background-position: -1935px 0px; }
+                20.69% { background-position: -2322px 0px; }
+                24.14% { background-position: -2709px 0px; }
+                27.59% { background-position: -3096px 0px; }
+                31.03% { background-position: -3483px 0px; }
+                34.48% { background-position: 0px -100px; }
+                37.93% { background-position: -387px -100px; }
+                41.38% { background-position: -774px -100px; }
+                44.83% { background-position: -1161px -100px; }
+                48.28% { background-position: -1548px -100px; }
+                51.72% { background-position: -1935px -100px; }
+                55.17% { background-position: -2322px -100px; }
+                58.62% { background-position: -2709px -100px; }
+                62.07% { background-position: -3096px -100px; }
+                65.52% { background-position: -3483px -100px; }
+                68.97% { background-position: 0px -200px; }
+                72.41% { background-position: -387px -200px; }
+                75.86% { background-position: -774px -200px; }
+                79.31% { background-position: -1161px -200px; }
+                82.76% { background-position: -1548px -200px; }
+                86.21% { background-position: -1935px -200px; }
+                89.66% { background-position: -2322px -200px; }
+                93.10% { background-position: -2709px -200px; }
+                96.55% { background-position: -3096px -200px; }
+                100.00% { background-position: -3483px -200px; }
+            }
+
+
+        </style>
+	</head>
+	<body>
+		<div class="fullpage">
+
+                <!-- 第四页 三个选项 -->
+                <div class="whaleOptionC whaleOptionBG3 whaleOptionCAni">
+                    <div class="whaleOptionCSprite"></div>
+                  </div>
+                  <div class="whaleOptionB whaleOptionBG2 whaleOptionBAni">
+                    <div class="whaleOptionBSprite"></div>
+                  </div>
+                  <div class="whaleOptionA whaleOptionBG1 whaleOptionAAni">
+                    <div class="whaleOptionASprite"></div>
+                  </div>
+
+            <!-- 第四页 内容end -->            
+			<div class="page2" style="pointer-events: none;">
+				<canvas class="p2BG"></canvas>
+			</div>
+
+		</div>
+		
+		<script>
+			//阻止 iOS 橡皮筋效果
+			document.body.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {passive: false}); 
+
+			let cWidth = window.innerWidth;
+			let cHeight = window.innerHeight;
+
+			//获取需要动画的dom节点
+			let fullpage = document.querySelector('.fullpage');
+            // let p1textInfo = document.querySelector(".p1textInfo");
+			let p2textInfo = document.querySelector('.p2textInfo');
+			let p2Contents = document.querySelector('.p2Contents');
+
+            let optionA = document.querySelector(".whaleOptionA");
+            let optionB = document.querySelector(".whaleOptionB");
+            let optionC = document.querySelector(".whaleOptionC");
+
+            //由于涉及精灵图动画，需要计算缩放
+            let ratio = window.devicePixelRatio;
+            let scale = window.innerWidth/750;
+
+            optionA.querySelector(".whaleOptionASprite").style = "transform:scale("+scale+")";
+            optionB.querySelector(".whaleOptionBSprite").style = "transform:scale("+scale+")";
+            optionC.querySelector(".whaleOptionCSprite").style = "transform:scale("+scale+")";
+
+			// 点击选项并翻页
+			optionA.addEventListener("touchstart",(e)=>{
+                optionA.classList.add("chooosenBG_p4");
+                optionA.querySelector(".whaleOptionASprite").classList.add("choosenAni_p4_A");
+
+                optionB.className = "whaleOptionB whaleOptionBG2"; 
+                optionC.className = "whaleOptionC whaleOptionBG3";
+
+                //延迟10ms添加fadeOut class，否则透明度动画不出现
+                setTimeout(() => {
+                    optionB.classList.add("fadeOut");
+                    optionC.classList.add("fadeOut");
+                }, 10);
+                
+
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+
+			},{passive:true})
+
+            //点击选项B
+            optionB.addEventListener("touchstart",(e)=>{
+                optionB.classList.add("chooosenBG_p4");
+                optionB.querySelector(".whaleOptionBSprite").classList.add("choosenAni_p4_B");
+
+                optionA.className = "whaleOptionA whaleOptionBG1"; 
+                optionC.className = "whaleOptionC whaleOptionBG3";
+
+                //延迟10ms添加fadeOut class，否则透明度动画不出现
+                setTimeout(() => {
+                    optionA.classList.add("fadeOut");
+                    optionC.classList.add("fadeOut");
+                }, 10);
+                
+
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+
+			},{passive:true})
+
+            //点击选项C
+            optionC.addEventListener("touchstart",(e)=>{
+                optionC.classList.add("chooosenBG_p4");
+                optionC.querySelector(".whaleOptionCSprite").classList.add("choosenAni_p4_C");
+
+                optionB.className = "whaleOptionB whaleOptionBG2"; 
+                optionA.className = "whaleOptionA whaleOptionBG1";
+
+                //延迟10ms添加fadeOut class，否则透明度动画不出现
+                setTimeout(() => {
+                    optionB.classList.add("fadeOut");
+                    optionC.classList.add("fadeOut");
+                }, 10);
+                
+
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+
+			},{passive:true})
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"></meta> 
+        <style>
+            *{
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+            .fullpage{
+                background: transparent;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                /* overflow: hidden; */
+                position: relative;
+                transform: translate3D(0,0,0) scale(1,1);
+                transform-origin:50% 0%;
+                background: lightgray;
+            }
+
+            .option_p6{
+                width: 40.926vw;
+                height: 8.7vw;
+                opacity: 1;
+                display: block;
+                overflow: visible;
+                position: absolute; 
+            }
+
+
+            .option_p6_A{
+                left: 16vw;
+                top: 25vh;
+                background: url("assets/imgs/clothOptionA.png");
+                background-size: cover;
+            }
+
+            .option_p6_B{
+                left: 56vw;
+                top: 45vh;
+                background: url("assets/imgs/clothOptionB.png");
+                background-size: cover;
+            }
+
+            .option_p6_C{
+                left: 26vw;
+                top: 65vh;
+                background: url("assets/imgs/clothOptionC.png");
+                background-size: cover;
+            }
+
+
+
+            .sat0{
+                filter: saturate(0) brightness(0);
+            }
+     
+
+        
+
+            .textInfo{
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                font-size: 99px;
+                color:black;
+            }
+            .page2{
+                background:transparent;
+                background-size: cover;
+                left: 0;
+                top:0;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                overflow: hidden;
+                position: absolute;
+            }
+
+            .selectedAni_p6{
+                animation: selecetedKey_p6 0.2s linear 0s 1 normal both;
+            }
+
+            .aniDelay_p6_A{
+                animation-delay: 1s;
+            }
+
+            .aniDelay_p6_B{
+                animation-delay: 1.3s;
+            }
+
+            .aniDelay_p6_C{
+                animation-delay: 1.6s;
+            }
+
+            .option_in_p6{
+                animation-name: option_in_p6Key;
+                animation-duration: 2s;
+                animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+                animation-iteration-count: 1;
+                animation-fill-mode: both;
+            }
+            .option_out_p6{
+                animation-name: option_out_p6Key;
+                animation-duration: 1s;
+                /* animation-delay: 0.2s; */
+                animation-timing-function: cubic-bezier(.36,.01,.89,.79);
+                animation-iteration-count: 1;
+                animation-fill-mode: both;
+            }
+
+            @keyframes option_in_p6Key {
+                0%{
+                    opacity: 0;
+                    transform: translate(50vw);
+                }
+                100%{
+                    opacity: 1;
+                    transform: translate(0vw);
+                }
+            }
+
+            @keyframes option_out_p6Key {
+                0%{
+                    opacity: 1;
+                    transform: translate(0vw);
+                }
+                100%{
+                    opacity: 0;
+                    transform: translate(-100vw);
+                }
+            }
+
+            @keyframes selecetedKey_p6 {
+
+                 0%{
+                    filter: saturate(0) brightness(0);
+                }
+                100%{
+                    filter: saturate(1) brightness(1);
+                }
+            }
+
+                
+            .fadeOut{
+                transition: all 0.2s linear;
+                opacity: 0;
+            }
+            
+        </style>
+	</head>
+	<body>
+		<div class="fullpage">
+
+                <!-- 第六页 三个选项 -->
+                <div class="option_p6 option_p6_A sat0 option_in_p6 aniDelay_p6_A"></div>
+                <div class="option_p6 option_p6_B sat0 option_in_p6 aniDelay_p6_B"></div>
+                <div class="option_p6 option_p6_C sat0 option_in_p6 aniDelay_p6_C"></div>
+
+		</div>
+		
+		<script>
+			//阻止 iOS 橡皮筋效果
+			document.body.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {passive: false}); 
+
+			let cWidth = window.innerWidth;
+			let cHeight = window.innerHeight;
+
+			//获取需要动画的dom节点
+			let fullpage = document.querySelector('.fullpage');
+			let p2textInfo = document.querySelector('.p2textInfo');
+			let p2Contents = document.querySelector('.p2Contents');
+
+            let optionA = document.querySelector(".option_p6_A");
+            let optionB = document.querySelector(".option_p6_B");
+            let optionC = document.querySelector(".option_p6_C");
+
+
+			// 点击选项并翻页
+			optionA.addEventListener("touchstart",(e)=>{
+                console.log("A")
+                optionA.className = "option_p6 option_p6_A selectedAni_p6 option_out_p6";
+                
+                optionB.className = "option_p6 option_p6_B sat0 fadeOut"; 
+                optionC.className = "option_p6 option_p6_C sat0 fadeOut";
+                
+                //500ms后加载翻页动画
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+
+			},{passive:true})
+
+            //点击选项B
+            optionB.addEventListener("touchstart",(e)=>{
+                optionB.className = "option_p6 option_p6_B selectedAni_p6 option_out_p6";
+                
+                optionA.className = "option_p6 option_p6_A sat0 fadeOut"; 
+                optionC.className = "option_p6 option_p6_C sat0 fadeOut"; 
+                
+                //500ms后加载翻页动画
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+
+			},{passive:true})
+
+
+            //点击选项C
+			optionC.addEventListener("touchstart",(e)=>{
+                optionC.className = "option_p6 option_p6_C selectedAni_p6 option_out_p6";
+                
+                optionB.className = "option_p6 option_p6_B sat0 fadeOut"; 
+                optionA.className = "option_p6 option_p6_A sat0 fadeOut"; 
+                
+                //500ms后加载翻页动画
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+
+			},{passive:true})
+                
+			
+		</script>
+	</body>
+</html>

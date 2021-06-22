@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"></meta> 
+        <style>
+            *{
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+            .fullpage{
+                background: transparent;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                /* overflow: hidden; */
+                position: relative;
+                transform: translate3D(0,0,0) scale(1,1);
+                transform-origin:50% 0%;
+                /* background: lightgray; */
+            }
+
+            .optionGroupA_p2{
+                left: 16vw;
+                top: 45vh;
+
+                transform-style: preserve-3d;
+                opacity: 1;
+                
+                transform-origin:13.6% 50%;
+                display: block;
+                overflow: visible;
+                position: absolute; 
+            }
+            .optionGroupB_p2{
+                left: 36vw;
+                top: 20vh;
+
+                transform-style: preserve-3d;
+                opacity: 1;
+                transform-origin:13.6% 50%;
+                display: block;
+                overflow: visible;
+                position: absolute; 
+            }
+            .optionGroupC_p2{
+                left: 60vw;
+                top: 35vh;
+
+                transform-style: preserve-3d;
+                opacity: 1;
+                transform-origin:13.6% 50%;
+                display: block;
+                overflow: visible;
+                position: absolute; 
+            }
+
+            .sat0{
+                filter: saturate(0);
+            }
+
+            .optionA_p2{
+                left: 0vw;
+                top: 0vh;
+                width: 27.96vw;
+                height: 13.7vw;
+                display: block;
+                position: absolute; 
+                background: url("http://bethe.top/163/color-quits/imgs/fireOptionA.png");
+                background-size: cover;
+
+
+            }
+            .optionB_p2{
+                left: 0vw;
+                top: 0vh;
+                width: 27.96vw;
+                height: 13.7vw;
+                display: block;
+                position: absolute; 
+                background: url("http://bethe.top/163/color-quits/imgs/fireOptionB.png");
+                background-size: cover;
+
+            }
+            .optionC_p2{
+                left: 0vw;
+                top: 0vh;
+                width: 27.96vw;
+                height: 13.7vw;
+                display: block;
+                position: absolute; 
+                background: url("http://bethe.top/163/color-quits/imgs/fireOptionC.png");
+                background-size: cover;
+
+
+            }
+
+            .optionATile_p2{
+                left: -2.22vw;
+                top: 0vh;
+                width: 32.4vw;
+                height: 41.11vw;
+                transform-origin:50% 22.5%;
+                display: block;
+                position: absolute; 
+                background: url("http://bethe.top/163/color-quits/imgs/fireOptionA_tile.png");
+                background-size: cover;
+            }
+            .optionBTile_p2{
+                left: -2.22vw;
+                top: 0vh;
+                width: 32.4vw;
+                height: 41.11vw;
+                transform-origin:50% 22.5%;
+                display: block;
+                position: absolute; 
+                background: url("http://bethe.top/163/color-quits/imgs/fireOptionB_tile.png");
+                background-size: cover;
+            }
+
+            .optionCTile_p2{
+                left: -2.22vw;
+                top: 0vh;
+                width: 32.4vw;
+                height: 41.11vw;
+                transform-origin:50% 22.5%;
+                display: block;
+                position: absolute; 
+                background: url("http://bethe.top/163/color-quits/imgs/fireOptionC_tile.png");
+                background-size: cover;
+            }
+            .optionShadow{
+                filter: opacity(0.5) blur(0.5vw) drop-shadow(0px 0px 1px rgb(255, 155, 93));
+            }
+
+            .aniDelayA{
+                animation-delay: 0s;
+            }
+
+            .aniDelayB{
+                animation-delay: 0.2s;
+            }
+
+            .aniDelayC{
+                animation-delay: 0.4s;
+            }
+
+            .optionInAniP2{
+                animation-name: optionInAniP2Key;
+                animation-duration: 1s;
+                animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+                animation-iteration-count: 1;
+                animation-fill-mode: both;
+            }
+
+            .optionTileInAniP2{
+                animation-name: optionTileInAniP2Key;
+                animation-duration: 1.5s;
+                animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+                animation-iteration-count: 1;
+                animation-fill-mode: both;
+            }
+
+            .optionOutAniP2{
+                animation: optionOutAniP2Key 0.5s cubic-bezier(0.33, 0, 1, 1) 0s 1 normal both;
+            }
+            .optionTileOutAniP2{
+                animation: optionTileOutAniP2Key 0.5s linear 0s 1 normal both;
+            }
+
+
+            .optionFloatAniP2_A{
+                animation: optionFloatAniP2Key 5s linear 0s infinite normal both;
+            }
+            .optionFloatAniP2_tile_A{
+                animation: optionFloatAniP2Key 5s linear 0.5s infinite normal both;
+            }
+
+            .optionFloatAniP2_B{
+                animation: optionFloatAniP2Key 5s linear -1s infinite normal both;
+            }
+            .optionFloatAniP2_tile_B{
+                animation: optionFloatAniP2Key 5s linear -0.5s infinite normal both;
+            }
+
+            .optionFloatAniP2_C{
+                animation: optionFloatAniP2Key 5s linear -2s infinite normal both;
+            }
+            .optionFloatAniP2_tile_C{
+                animation: optionFloatAniP2Key 5s linear -1.5s infinite normal both;
+            }
+
+            @keyframes optionInAniP2Key {
+                0%{
+                    opacity: 0;
+                    transform: translateY(15vw);
+                }
+                50%{
+                    opacity: 1;
+                }
+                100%{
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes optionTileInAniP2Key {
+                0%{
+                    opacity: 0;
+                    transform: scaleY(0.5);
+                }
+                20%{
+                    opacity: 1;
+                }
+                100%{
+                    opacity: 0;
+                    transform: scaleY(1);
+                }
+            }
+
+            @keyframes optionOutAniP2Key {
+                0%{
+                    opacity: 1;
+                    transform: translateY(0vw);
+                }
+                100%{
+                    opacity: 0;
+                    transform: translateY(-30vw);
+                }
+            }
+
+            @keyframes optionTileOutAniP2Key {
+                0%{
+                    opacity: 0;
+                    transform: scaleY(1);
+                }
+                100%{
+                    opacity: 1;
+                    transform: scaleY(2);
+                }
+            }
+            @keyframes optionFloatAniP2Key{
+                0.00% {transform: translate3D(0vw,0vw,0vw);}
+                1.00% {transform: translate3D(-0.09491428571429vw,0.00371428571429vw,0vw);}
+                2.00% {transform: translate3D(-0.18931428571429vw,0.0116vw,0vw);}
+                3.00% {transform: translate3D(-0.28294285714286vw,0.02397142857143vw,0vw);}
+                4.00% {transform: translate3D(-0.37557142857143vw,0.04111428571429vw,0vw);}
+                5.00% {transform: translate3D(-0.46691428571429vw,0.06328571428571vw,0vw);}
+                6.00% {transform: translate3D(-0.55668571428571vw,0.0908vw,0vw);}
+                7.00% {transform: translate3D(-0.64457142857143vw,0.124vw,0vw);}
+                8.00% {transform: translate3D(-0.73022857142857vw,0.16314285714286vw,0vw);}
+                9.00% {transform: translate3D(-0.81282857142857vw,0.2084vw,0vw);}
+                10.00% {transform: translate3D(-0.89165714285714vw,0.25971428571429vw,0vw);}
+                11.00% {transform: translate3D(-0.96611428571429vw,0.31702857142857vw,0vw);}
+                12.00% {transform: translate3D(-1.0356vw,0.3802vw,0vw);}
+                13.00% {transform: translate3D(-1.0996vw,0.449vw,0vw);}
+                14.00% {transform: translate3D(-1.15762857142857vw,0.52305714285714vw,0vw);}
+                15.00% {transform: translate3D(-1.20922857142857vw,0.60191428571429vw,0vw);}
+                16.00% {transform: translate3D(-1.25405714285714vw,0.685vw,0vw);}
+                17.00% {transform: translate3D(-1.29191428571429vw,0.77171428571429vw,0vw);}
+                18.00% {transform: translate3D(-1.32254285714286vw,0.86134285714286vw,0vw);}
+                19.00% {transform: translate3D(-1.34597142857143vw,0.95308571428571vw,0vw);}
+                20.00% {transform: translate3D(-1.36217142857143vw,1.04625714285714vw,0vw);}
+                21.00% {transform: translate3D(-1.37131428571429vw,1.14008571428571vw,0vw);}
+                22.00% {transform: translate3D(-1.37357142857143vw,1.23434285714286vw,0vw);}
+                23.00% {transform: translate3D(-1.36917142857143vw,1.32851428571429vw,0vw);}
+                24.00% {transform: translate3D(-1.3582vw,1.4222vw,0vw);}
+                25.00% {transform: translate3D(-1.34091428571429vw,1.51494285714286vw,0vw);}
+                26.00% {transform: translate3D(-1.31742857142857vw,1.60631428571429vw,0vw);}
+                27.00% {transform: translate3D(-1.288vw,1.69594285714286vw,0vw);}
+                28.00% {transform: translate3D(-1.25274285714286vw,1.78342857142857vw,0vw);}
+                29.00% {transform: translate3D(-1.21191428571429vw,1.8684vw,0vw);}
+                30.00% {transform: translate3D(-1.16568571428571vw,1.95051428571429vw,0vw);}
+                31.00% {transform: translate3D(-1.11425714285714vw,2.02948571428571vw,0vw);}
+                32.00% {transform: translate3D(-1.05782857142857vw,2.10497142857143vw,0vw);}
+                33.00% {transform: translate3D(-0.99662857142857vw,2.17668571428571vw,0vw);}
+                34.00% {transform: translate3D(-0.93094285714286vw,2.24425714285714vw,0vw);}
+                35.00% {transform: translate3D(-0.86111428571429vw,2.30742857142857vw,0vw);}
+                36.00% {transform: translate3D(-0.78742857142857vw,2.36594285714286vw,0vw);}
+                37.00% {transform: translate3D(-0.71022857142857vw,2.41962857142857vw,0vw);}
+                38.00% {transform: translate3D(-0.6298vw,2.46831428571429vw,0vw);}
+                39.00% {transform: translate3D(-0.54651428571429vw,2.51194285714286vw,0vw);}
+                40.00% {transform: translate3D(-0.46065714285714vw,2.5504vw,0vw);}
+                41.00% {transform: translate3D(-0.37262857142857vw,2.58371428571429vw,0vw);}
+                42.00% {transform: translate3D(-0.28268571428571vw,2.61188571428571vw,0vw);}
+                43.00% {transform: translate3D(-0.19117142857143vw,2.63497142857143vw,0vw);}
+                44.00% {transform: translate3D(-0.09842857142857vw,2.65305714285714vw,0vw);}
+                45.00% {transform: translate3D(-0.00468571428571vw,2.66625714285714vw,0vw);}
+                46.00% {transform: translate3D(0.08971428571429vw,2.67474285714286vw,0vw);}
+                47.00% {transform: translate3D(0.18417142857143vw,2.67868571428571vw,0vw);}
+                48.00% {transform: translate3D(0.2738vw,2.67814285714286vw,0vw);}
+                49.00% {transform: translate3D(0.3632vw,2.67311428571429vw,0vw);}
+                50.00% {transform: translate3D(0.45208571428571vw,2.66342857142857vw,0vw);}
+                51.00% {transform: translate3D(0.54014285714286vw,2.64891428571429vw,0vw);}
+                52.00% {transform: translate3D(0.62711428571429vw,2.62945714285714vw,0vw);}
+                53.00% {transform: translate3D(0.71265714285714vw,2.60494285714286vw,0vw);}
+                54.00% {transform: translate3D(0.79642857142857vw,2.57531428571429vw,0vw);}
+                55.00% {transform: translate3D(0.87814285714286vw,2.54054285714286vw,0vw);}
+                56.00% {transform: translate3D(0.9574vw,2.50062857142857vw,0vw);}
+                57.00% {transform: translate3D(1.03388571428571vw,2.45565714285714vw,0vw);}
+                58.00% {transform: translate3D(1.10731428571429vw,2.40574285714286vw,0vw);}
+                59.00% {transform: translate3D(1.17728571428571vw,2.35102857142857vw,0vw);}
+                60.00% {transform: translate3D(1.24348571428571vw,2.29171428571429vw,0vw);}
+                61.00% {transform: translate3D(1.30565714285714vw,2.22805714285714vw,0vw);}
+                62.00% {transform: translate3D(1.36348571428571vw,2.16037142857143vw,0vw);}
+                63.00% {transform: translate3D(1.41665714285714vw,2.08902857142857vw,0vw);}
+                64.00% {transform: translate3D(1.46502857142857vw,2.01434285714286vw,0vw);}
+                65.00% {transform: translate3D(1.50837142857143vw,1.9366vw,0vw);}
+                66.00% {transform: translate3D(1.54654285714286vw,1.8562vw,0vw);}
+                67.00% {transform: translate3D(1.5794vw,1.77342857142857vw,0vw);}
+                68.00% {transform: translate3D(1.6068vw,1.68868571428571vw,0vw);}
+                69.00% {transform: translate3D(1.62862857142857vw,1.60231428571429vw,0vw);}
+                70.00% {transform: translate3D(1.64474285714286vw,1.51468571428571vw,0vw);}
+                71.00% {transform: translate3D(1.65502857142857vw,1.4262vw,0vw);}
+                72.00% {transform: translate3D(1.65942857142857vw,1.33725714285714vw,0vw);}
+                73.00% {transform: translate3D(1.6578vw,1.24825714285714vw,0vw);}
+                74.00% {transform: translate3D(1.65011428571429vw,1.15957142857143vw,0vw);}
+                75.00% {transform: translate3D(1.63628571428571vw,1.07162857142857vw,0vw);}
+                76.00% {transform: translate3D(1.61628571428571vw,0.98471428571429vw,0vw);}
+                77.00% {transform: translate3D(1.59005714285714vw,0.89942857142857vw,0vw);}
+                78.00% {transform: translate3D(1.55771428571429vw,0.81625714285714vw,0vw);}
+                79.00% {transform: translate3D(1.51934285714286vw,0.73574285714286vw,0vw);}
+                80.00% {transform: translate3D(1.4752vw,0.65837142857143vw,0vw);}
+                81.00% {transform: translate3D(1.42548571428571vw,0.58454285714286vw,0vw);}
+                82.00% {transform: translate3D(1.37051428571429vw,0.51462857142857vw,0vw);}
+                83.00% {transform: translate3D(1.31062857142857vw,0.44897142857143vw,0vw);}
+                84.00% {transform: translate3D(1.2462vw,0.38774285714286vw,0vw);}
+                85.00% {transform: translate3D(1.17762857142857vw,0.33117142857143vw,0vw);}
+                86.00% {transform: translate3D(1.10537142857143vw,0.27934285714286vw,0vw);}
+                87.00% {transform: translate3D(1.02982857142857vw,0.23228571428571vw,0vw);}
+                88.00% {transform: translate3D(0.95145714285714vw,0.19005714285714vw,0vw);}
+                89.00% {transform: translate3D(0.87082857142857vw,0.15257142857143vw,0vw);}
+                90.00% {transform: translate3D(0.7884vw,0.11977142857143vw,0vw);}
+                91.00% {transform: translate3D(0.70442857142857vw,0.09142857142857vw,0vw);}
+                92.00% {transform: translate3D(0.61911428571429vw,0.06728571428571vw,0vw);}
+                93.00% {transform: translate3D(0.53271428571429vw,0.04717142857143vw,0vw);}
+                94.00% {transform: translate3D(0.44537142857143vw,0.03088571428571vw,0vw);}
+                95.00% {transform: translate3D(0.35722857142857vw,0.0182vw,0vw);}
+                96.00% {transform: translate3D(0.26851428571429vw,0.00894285714286vw,0vw);}
+                97.00% {transform: translate3D(0.17931428571429vw,0.00294285714286vw,0vw);}
+                98.00% {transform: translate3D(0.08977142857143vw,0.00002857142857vw,0vw);}
+                99.00% {transform: translate3D(0vw,0vw,0vw);}
+                100.00% {transform: translate3D(0vw,0vw,0vw);}
+            }
+                
+            .fadeOut{
+                transition: all 0.2s linear;
+                opacity: 0;
+            }
+            
+        </style>
+	</head>
+	<body>
+		<div class="fullpage">
+
+                <!-- 第二页 三个选项 -->
+                <div class="optionGroupA_p2 optionInAniP2 aniDelayA">
+                    <div class="optionATile_p2 optionTileInAniP2 aniDelayA"></div>
+                    <div class="optionA_p2 optionShadow optionFloatAniP2_tile_A"></div>
+                    <div class="optionA_p2 sat0 optionFloatAniP2_A"></div>
+                </div>
+
+                <div class="optionGroupB_p2 optionInAniP2 aniDelayB">
+                    <div class="optionBTile_p2 optionTileInAniP2 aniDelayB"></div>
+                    <div class="optionB_p2 optionShadow optionFloatAniP2_tile_B"></div>
+                    <div class="optionB_p2 sat0 optionFloatAniP2_B"></div>
+                </div>
+
+                <div class="optionGroupC_p2 optionInAniP2 aniDelayC">
+                    <div class="optionCTile_p2 optionTileInAniP2 aniDelayC"></div>
+                    <div class="optionC_p2 optionShadow optionFloatAniP2_tile_C"></div>
+                    <div class="optionC_p2 sat0 optionFloatAniP2_C"></div>
+                </div>
+
+		</div>
+		
+		<script>
+			//阻止 iOS 橡皮筋效果
+			document.body.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {passive: false}); 
+
+			let cWidth = window.innerWidth;
+			let cHeight = window.innerHeight;
+
+			//获取需要动画的dom节点
+			let fullpage = document.querySelector('.fullpage');
+			let p2textInfo = document.querySelector('.p2textInfo');
+			let p2Contents = document.querySelector('.p2Contents');
+
+            let optionA = document.querySelector(".optionGroupA_p2");
+            let optionB = document.querySelector(".optionGroupB_p2");
+            let optionC = document.querySelector(".optionGroupC_p2");
+
+
+
+			// 点击选项并翻页
+			optionA.addEventListener("click",(e)=>{
+                optionA.className = "optionGroupA_p2 optionOutAniP2";
+                optionA.querySelector(".optionATile_p2").className = "optionATile_p2 optionTileOutAniP2";
+                
+                optionB.className = "optionGroupB_p2"; 
+                optionC.className = "optionGroupC_p2";
+
+                //延迟10ms添加fadeOut class，否则透明度动画不出现
+                setTimeout(() => {
+                    optionB.classList.add("fadeOut");
+                    optionC.classList.add("fadeOut");
+                }, 10);
+                                
+                //300ms后加载翻页动画
+                setTimeout(() => {
+                    location.reload();
+                    //history.go(0)
+                }, 400);
+
+			},{passive:true})
+
+            //点击选项B
+			optionB.addEventListener("click",(e)=>{
+                optionB.className = "optionGroupB_p2 optionOutAniP2";
+                optionB.querySelector(".optionBTile_p2").className = "optionBTile_p2 optionTileOutAniP2";
+                
+                optionA.className = "optionGroupA_p2"; 
+                optionC.className = "optionGroupC_p2";
+
+                setTimeout(() => {
+                    optionA.classList.add("fadeOut");
+                    optionC.classList.add("fadeOut");
+                }, 10);
+
+                setTimeout(() => {
+                    location.reload();
+                }, 400);
+                
+			},{passive:true})
+
+            //点击选项C
+			optionC.addEventListener("click",(e)=>{
+                optionC.className = "optionGroupC_p2 optionOutAniP2";
+                optionC.querySelector(".optionCTile_p2").className = "optionCTile_p2 optionTileOutAniP2";
+                
+                optionA.className = "optionGroupA_p2"; 
+                optionB.className = "optionGroupB_p2";
+
+                setTimeout(() => {
+                    optionA.classList.add("fadeOut");
+                    optionB.classList.add("fadeOut");
+                }, 10);
+
+                setTimeout(() => {
+                    location.reload();
+                }, 400);
+                
+			},{passive:true})
+			
+		</script>
+	</body>
+</html>

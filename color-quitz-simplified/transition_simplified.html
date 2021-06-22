@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="js/gsap.min.js"></script>
+        <style>
+            *{
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+            .fullpage{
+                background: transparent;
+                width: 100vw;
+                height: 100vh;
+                display: block;
+                overflow: hidden;
+                position: relative;
+            }
+            .textInfo{
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                text-align: center;
+                font-size: 20vw;
+                color:black;
+            }
+            .page2{
+                background:transparent;
+                background-size: cover;
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                overflow: hidden;
+                position: absolute;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="fullpage">
+            <div class="textInfo p1textInfo" style="background:burlywood;">点击页面<br>翻  页</div>
+			<div class="page2 maskTest">
+				<canvas class="p2BG"></canvas>
+				<div class="p2Contents" style="opacity: 0;">
+					<div class="textInfo p2textInfo" style="display:none;">第二页</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<script>
+            //设置画布宽高
+			let cWidth = window.innerWidth;
+			let cHeight = window.innerHeight;
+
+			//获取需要动画的dom节点
+			let fullpage = document.querySelector('.fullpage');
+            let p1textInfo = document.querySelector(".p1textInfo");
+			let p2textInfo = document.querySelector('.p2textInfo');
+			let p2Contents = document.querySelector('.p2Contents');
+
+			//翻页动画
+            //每个点初始x位置在屏幕右侧也即y位置按照页面高度分割
+			let ySplit = [0,cHeight*0.5,cHeight];
+			let points = {
+				p1:{x:cWidth,y:ySplit[0]},
+				p2:{x:cWidth,y:ySplit[1]},
+				p3:{x:cWidth,y:ySplit[2]},
+				p4:{x:cWidth,y:ySplit[2]},
+				p5:{x:cWidth,y:ySplit[0]},
+			};
+            //简化贝塞尔控制点计算
+            //让控制点平行或者垂直于对应顶点，距离相等的位置
+            //函数返回两个控制点的xy坐标
+			let cps = cHeight*0.2;//设置控制点距离
+			function cPoints(point,dir,s){
+				let c1x=0;
+				let c1y=0;
+				let c2x=0;
+				let c2y=0;
+				switch (dir) {
+					case "v":
+						c1x = point.x;
+						c1y = point.y-s;
+						c2x = point.x;
+						c2y = point.y+s;
+						break;
+					case "h":
+						c1x = point.x-s;
+						c1y = point.y;
+						c2x = point.x+s;
+						c2y = point.y;
+						break;
+					default:
+						break;
+				}
+				return [c1x,c1y,c2x,c2y]
+			}
+
+            //设置翻页动画的 canvas 宽高
+			let p2bg = document.querySelector('.p2BG');
+				p2bg.width = cWidth;
+				p2bg.height = cHeight;
+			let p2ctx = p2bg.getContext('2d');
+
+			//绘制布帘
+			function drawCloth_transPage(){
+				p2ctx.clearRect(0,0,p2bg.width,p2bg.height);
+				p2ctx.fillStyle = 'lightGray';
+				p2ctx.beginPath();
+				p2ctx.moveTo(points.p1.x, points.p1.y);
+
+                //p1-p2,p2-p3为贝塞尔曲线
+                //画布中绘制贝塞尔曲线的方法
+                //bezierCurveTo(
+                    // p1(起始顶点)的控制点2的x，
+                    // p1的控制点2的y，
+                    // p2(下一个顶点)的控制点1的x，
+                    // p2的控制点1的y，
+                    // p2的x，
+                    // p2的y);
+                
+				p2ctx.bezierCurveTo(
+                    points.p1.x, points.p1.y,
+					cPoints(points.p2,"v",cps)[0], 
+					cPoints(points.p2,"v",cps)[1], 
+					points.p2.x, points.p2.y);
+				p2ctx.bezierCurveTo(
+					cPoints(points.p2,"v",cps)[2], 
+					cPoints(points.p2,"v",cps)[3], 
+                    points.p3.x, points.p3.y,
+					points.p3.x, points.p3.y);
+
+                //剩下的p3-p4,p4-p5,p5-p1是直线，用 lineTo 链接两个顶点就可以了
+				p2ctx.lineTo(points.p4.x, points.p4.y);
+				p2ctx.lineTo(points.p5.x, points.p5.y);
+				p2ctx.closePath();
+				p2ctx.fill();
+                //通过requestAnimationFrame每帧不断绘制
+				requestAnimationFrame(drawCloth_transPage)
+			}
+			drawCloth_transPage();
+
+			// 点击时翻页
+			fullpage.addEventListener("click",(e)=>{
+                p2textInfo.style = "display:none;"
+
+                //翻页过程中禁止点击，演示用
+                fullpage.style="pointer-events:none;";
+                
+                //布帘拉出动画
+                //这里使用了现成的 gsap 动画库，详情感兴趣可以去官网了解
+                //https://greensock.com/docs/v3/GSAP
+                //其实用到的功能不多，如果追求更轻量的体积可以自己手撸一个，此处暂不赘述
+                //创建一个「时间线」
+                const clothWave = gsap.timeline();
+                      clothWave.fromTo(
+                        points.p2, //要动画的点
+                        {
+                            x:cWidth, //初始值
+                        },
+                        {
+                            x:0,//动画结束值
+                            duration: 0.5,//动画用时
+                            ease: "ease-in"//缓动方式
+                        }).to(//然后开始弹性动画
+                            points.p2, 
+                            {
+                                duration:0.2,
+                                x:cWidth*0.05, //稍微往👉🏻位移一丢丢
+                                ease: "ease-out"
+                            }
+                        ).to(
+                            points.p2, 
+                            {
+                                duration:0.2,
+                                x:0, //再往左拉回
+                                ease: "ease-in"
+                            }
+                        ).to(
+                            points.p2, 
+                            {
+                                duration:0.2,
+                                x:cWidth*0.015, //再次稍微往👉🏻位移一丢丢丢丢
+                                ease: "ease-out"
+                            }
+                        ).to(
+                            points.p2, 
+                            {
+                                duration:0.2,
+                                x:0, //再次往左拉回
+                                ease: "ease-in",
+                                onComplete:()=>{
+                                    //动画完成后，恢复页面可点击性
+                                    fullpage.style="pointer-events:auto;";
+                                    document.body.querySelector(".page2").style="pointer-events:auto;";
+                                }
+                            }
+                        );
+                     clothWave.play();
+
+                //波形动画完成后，page2内容透明度的出现动画，
+                p2textInfo.style = "display:block;"
+                gsap.fromTo(
+                    p2Contents,
+                    {
+                        opacity:0,
+                    },
+                    {
+                        opacity:1,
+                        duration: 0.2,
+                        delay:0.7,
+                        onComplete:()=>{
+                            //p2内容出现后效果。如果有需要，可以在这里把第一页的内容销毁了，或者静音
+                        }
+                    })
+                //其他点的动画
+                gsap.fromTo(points.p1,{x:cWidth,
+                    },{x:0,delay:0.1,duration: 0.5,ease: "ease-in",
+                    });
+                gsap.fromTo(points.p3,{x:cWidth, 
+                    },{x:0,delay:0.1,duration: 0.5,ease: "ease-in",
+                    });
+			},{passive:true})			
+		</script>
+	</body>
+</html>

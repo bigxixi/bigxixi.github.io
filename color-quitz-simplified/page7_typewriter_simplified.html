@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"></meta> 
+        <script src="js/matter.min.js"></script>
+
+		<style>
+			body{
+                margin: 0;
+                padding: 0;
+				background: white;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+			}
+            .info{
+                position: fixed;
+                left: 0;
+                top: 0;
+                font-size: 50;
+            }
+		</style>
+    </head>
+    <body>
+        <div class="dropCanvas"></div>
+        <div class="info"></div>
+        <script>
+            let scale = window.devicePixelRatio;//屏幕缩放倍数
+            let scaleFixed = scale/3;//用于手工或自动修正不同机型的缩放倍数
+            let cWidth = window.innerWidth*scale;
+			let cHeight = window.innerHeight*scale;
+            let info = document.querySelectorAll(".info")[0];
+
+            //非选项图片url列表
+            let normalUrls = [
+                            'assets/imgs/drop/element1.png',
+                            'assets/imgs/drop/element2.png',
+                            'assets/imgs/drop/element3.png',
+                            'assets/imgs/drop/element4.png',
+                            'assets/imgs/drop/element5.png',
+                            'assets/imgs/drop/element6.png',
+                            'assets/imgs/drop/element7.png',
+                            'assets/imgs/drop/element8.png',
+                            'assets/imgs/drop/element9.png',
+                            'assets/imgs/drop/element10.png',
+                            'assets/imgs/drop/element11.png',
+                            'assets/imgs/drop/element12.png',
+                            'assets/imgs/drop/element13.png',
+                            'assets/imgs/drop/element14.png',
+                            'assets/imgs/drop/element1.png',
+                            'assets/imgs/drop/element2.png',
+                            'assets/imgs/drop/element3.png',
+                            'assets/imgs/drop/element4.png',
+                            'assets/imgs/drop/element5.png',
+                            'assets/imgs/drop/element6.png',
+                            'assets/imgs/drop/element7.png',
+                            'assets/imgs/drop/element8.png',
+                            'assets/imgs/drop/element9.png',
+                            'assets/imgs/drop/element6.png',
+                            'assets/imgs/drop/element7.png',
+                            'assets/imgs/drop/element8.png',
+                            'assets/imgs/drop/element9.png',
+                            'assets/imgs/drop/element10.png',
+                            'assets/imgs/drop/element11.png',
+                            'assets/imgs/drop/element12.png',
+                            'assets/imgs/drop/element4.png',
+                            'assets/imgs/drop/element5.png',
+                            'assets/imgs/drop/element6.png',
+                            'assets/imgs/drop/element7.png',
+                            'assets/imgs/drop/element8.png',
+                            ];
+            //图片加载后获取到的 image 对象存这里
+            let normalPics = [];
+            
+            //选项图片url列表
+            let optionUrls = [
+                            'assets/imgs/drop/optionA_text.png',
+                            'assets/imgs/drop/optionA.png',
+                            'assets/imgs/drop/optionB_text.png',
+                            'assets/imgs/drop/optionB.png',
+                            'assets/imgs/drop/optionC_text.png',
+                            'assets/imgs/drop/optionC.png',
+                            ]
+
+             //图片加载后获取到的 image 对象存这里
+            let optionPics = [];
+
+            //加载图片
+            const loadImg = (url) => {
+                return new Promise(resolve => {
+                        let image = new Image()
+                        image.src = url
+                        image.onload = () =>{
+                            resolve(image)
+                        }
+                        image.onerror = () => {
+                            reject(`Errors on loading`)
+                        }
+                    }) 
+            }
+
+            const getImgObject = (images,toList) => {
+                const imgQueue = [];
+                for(let i = 0;i<images.length;i++) {
+                    imgQueue.push(loadImg(images[i]))
+                }
+                Promise.all(imgQueue).then((item) => {
+                    toList.push(item);
+                })
+            }
+                  getImgObject(normalUrls,normalPics);
+                  getImgObject(optionUrls,optionPics);
+
+            let pics = normalUrls.length + optionUrls.length -1;//图片总数
+			
+            // 创建 Matter.js 物理世界
+            let Engine = Matter.Engine,
+                Render = Matter.Render,
+                Runner = Matter.Runner,
+                Bodies = Matter.Bodies,
+                Events = Matter.Events,
+                Constraint = Matter.Constraint,
+                Mouse = Matter.Mouse,
+                MouseConstraint = Matter.MouseConstraint,
+                Composites = Matter.Composites,
+                Composite = Matter.Composite;
+
+            // create an engine
+            let engine = Engine.create({
+                    enableSleeping: true
+                });
+                
+            //调整解算精度，否则物体容易乱晃
+            //see https://github.com/liabru/matter-js/issues/772
+                engine.constraintIterations = 200;
+                engine.positionIterations = 200;
+                engine.velocityIterations = 200;
+
+            Engine.update(engine, 16.667, 1);
+
+            let world = engine.world;
+                world.gravity.y = 15;//设置重力
+                
+            // create a renderer,可以用已有 canvse 也可以新创建
+            let theCanvas = document.querySelectorAll(".dropCanvas")[0];
+            let render = Render.create({
+                element: theCanvas,
+                engine: engine,
+                options: {
+                    width: cWidth,
+                    height: cHeight,
+                    background: "#ffffff",
+                    showAngleIndicator: false,
+                    wireframes: false
+                }
+            });
+            Render.run(render);
+            // create runner
+            let runner = Runner.create();
+                runner.isFixed = true;
+            Runner.run(runner, engine);
+
+
+				
+            //创建外框
+            let wall_left = Bodies.rectangle(-5, cHeight/2, 10, cHeight, { 
+                isStatic: true,
+                slop: 20,  density: 100,frictionStatic:100,
+                friction: 0.5,   
+                render:{
+ 
+                    // frictionStatic: 100,
+                }
+             });
+            let wall_right = Bodies.rectangle(cWidth+5, cHeight/2, 10, cHeight, { 
+                isStatic: true,
+                slop: 20,  density: 100,frictionStatic:100,
+                friction: 0.5
+             });
+            let wall_bottom = Bodies.rectangle(cWidth/2, cHeight+5, cWidth, 10, { 
+                isStatic: true ,
+                slop: 20,  density: 100,frictionStatic:100,
+                friction: 0.5
+            });
+
+            Composite.add(world, [wall_left,wall_right,wall_bottom]);
+
+				//作为 demo 现在是每隔 100ms 生成一个图片物体并掉落，需要根据音频调整
+                let imgCount=0,//非选项图片数
+                    optionCount=0,//选项图片数
+                    totalCount=0,//总图片数
+                    iw=0,
+                    ih=0;
+                let url_temp;
+
+                let timer = setInterval(() => {
+                    //非选项图片横向三个下落点，依次下落
+                    let x_temp = (totalCount%3)*cWidth*0.3+cWidth*0.2;
+
+                    //在第10、20、30个物体时分别掉落三个选项及选项文本
+                    if(totalCount==10 || totalCount == 20 || totalCount == 30){
+                        url_temp = optionPics[0][optionCount].src;
+                        let iw1 = optionPics[0][optionCount].width*scaleFixed;//宽高适配
+                        let ih1 = optionPics[0][optionCount].height*scaleFixed;//宽高适配
+                        let rect1 = Bodies.rectangle(cWidth/2, -ih1/2, iw1, ih1, {//目前让选项都从中间下落，可能需要微调
+                            restitution: 0.9,
+                            slop: 20,  density: 100,frictionStatic:100,
+                            friction: 0.5,    
+                                    render: {
+                                        sprite: {
+                                            texture: url_temp,
+                                            xScale:scaleFixed,
+                                            yScale:scaleFixed,
+                                        }
+                                    }
+                                });
+
+                        optionCount++;//选项文本后一个物体一定是选项（A、B、C），所以直接创建
+                        
+                        url_temp = optionPics[0][optionCount].src;
+                        let iw2 = optionPics[0][optionCount].width*scaleFixed;
+                        let ih2 = optionPics[0][optionCount].height*scaleFixed;
+                        let rect2 = Bodies.rectangle(cWidth/2, (-ih1-ih2/2), iw2, ih2, {
+                            restitution: 0.9,
+                            slop: 20,  density: 100,frictionStatic:100,
+                            friction: 0.5,   
+                                    render: {
+                                        sprite: {
+                                            texture: url_temp,
+                                            xScale:scaleFixed,
+                                            yScale:scaleFixed,
+                                        }
+                                    }
+                                });
+
+                        //绑定 option 和 text
+                        let constraint = Constraint.create({
+                            // stiffness: 1,
+                            // length: 5+(ih1+ih2)/2,
+                            bodyA: rect1,
+                            // pointA:{x:,y:},
+                            bodyB: rect2,
+                            // pointB:{x:(x_temp-iw1/2),y:10},
+                            render:{
+                                visible:false,
+                            }
+                            
+                        });
+                        //将选项、选项文本、绑定关系 都加入到物理世界
+                        Composite.add(world, [rect1,rect2,constraint]);
+                        optionCount++;
+                    }else{
+                        url_temp = normalPics[0][imgCount].src;
+                        iw = normalPics[0][imgCount].width*scaleFixed;
+                        ih = normalPics[0][imgCount].height*scaleFixed;
+
+                        let rect = Bodies.rectangle(x_temp, -ih/2, iw, ih, {
+                            restitution: 0.9,
+                            slop: 20,  density: 100,frictionStatic:100,
+                            friction: 0.5,   
+                                    render: {
+                                        //strokeStyle: '#ffffff',
+                                        sprite: {
+                                            texture: url_temp,
+                                            xScale:scaleFixed,
+                                            yScale:scaleFixed,
+                                        }
+                                    }
+                                });
+                        Composite.add(world,rect);
+                        imgCount++;
+                    }
+                     //数量超过最大图片数则退出
+                    if(totalCount>=pics){
+                        clearInterval(timer);
+                        return;
+                    }
+                    totalCount = optionCount + imgCount;
+                },100);
+
+                //绑定鼠标控制
+                let mouse = Mouse.create(render.canvas),
+                    mouseConstraint = MouseConstraint.create(engine, {
+                        mouse: mouse,
+                        constraint: {
+                            stiffness: 0.2,
+                            render: {
+                                visible: false
+                            }
+                        }
+                    });
+                
+                //视频canvas后，鼠标的坐标也要跟着缩放
+                let mouseScale = 1 + (1 / (1/scale / (1 - 1/scale)))
+                Mouse.setScale(mouse, {x: mouseScale, y: mouseScale});
+                // Mouse.setOffset(mouse, {x: -cWidth/2, y: -cHeight/2});
+                Composite.add(world, mouseConstraint);
+                render.mouse = mouse;
+
+                //点击事件
+                //鼠标抬起
+                let MouseDelta = 0;
+                let choosen = null;
+
+                //这段可保留点击，去除拖拽（讨论是否去除）
+                Matter.Events.on(mouseConstraint,"mousemove",function(e){
+                     e.source.constraint.bodyB = null;
+                })
+
+                //判定是点击还是拖拽，并获取点中的物体
+                Matter.Events.on(mouseConstraint, 'mouseup', function(e) {
+                    //获取点中的物体,一般是第一个物体 theBody[0]
+                    let theBody = Matter.Query.point(Composite.allBodies(world),e.mouse.position);
+                    if(theBody[0]!=undefined){
+                        MouseDelta = Math.abs(e.source.mouse.mouseupPosition.x - e.source.mouse.mousedownPosition.x)+
+                        Math.abs(e.source.mouse.mouseupPosition.y - e.source.mouse.mousedownPosition.y);
+                        let imgName = theBody[0].render.sprite.texture.substring(theBody[0].render.sprite.texture.lastIndexOf("/")+1,theBody[0].render.sprite.texture.length);
+                        if(MouseDelta<10){
+                            info.innerHTML = "点击了物体："+imgName+" ！";
+                            //点击后替换图片然后150ms后换回来，只做了选项 A 的文本的 demo
+                            if(imgName == 'optionA_text.png'){
+                                theBody[0].render.sprite.texture = 'assets/imgs/drop/optionA_text_clicked.png';
+                                setTimeout(() => {
+                                    theBody[0].render.sprite.texture = 'assets/imgs/drop/optionA_text.png';
+                                    wall_bottom.isStatic = false;
+                                    wall_left.isStatic = false;
+                                    wall_right.isStatic = false;
+                                }, 150);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1000);
+                            }
+
+                        }else{
+                            info.innerHTML = "拖拽了物体："+imgName+" ，已忽略点击事件！";
+                            console.log(imgName+" 触发了拖拽操作，已忽略点击事件！");
+
+                        }
+                    }
+                });   
+                //缩放canvas以适配屏幕
+                document.querySelector("canvas").style = "transform-origin: 0% 0%;transform:scale("+(1/scale)+");";       
+        </script>
+    </body>
+</html>
