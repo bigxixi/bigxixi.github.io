@@ -11,7 +11,7 @@
 </head>
 <body">
      
-    <h3>特斯拉行车记录仪加水印（Beta）</h3>
+    <h3>特斯拉行车记录仪加水印 v1.1</h3>
     <div>
         使用步骤：<br/>
         可以在电脑也可以在手机使用本工具。<br/>
@@ -24,7 +24,7 @@
         5.点击「开始录制」，等待录制（可以滑动进度条到对应时间点再开始）。<br/>
         6.点击「结束录制并下载视频」完成录制。<br/>
         7.点击浏览器的下载列表，可以看到刚才录制的视频。<br/>
-        <span style="color: rgb(255, 128, 0);">iPhone（Safari）生成的是mp4格式，安卓（Chrome，edge）生成的是webm，如需转换为mp4，可以搜索一些在线工具或者app，例如</span>
+        <span style="color: rgb(255, 128, 0);">iPhone（Safari）生成的是mp4格式，部分安卓（Chrome，edge）生成的是webm，如需转换为mp4，可以搜索一些在线工具或者app，例如</span>
         <a href="https://converter.app/webm-to-mp4/">https://converter.app/webm-to-mp4/</a>
     </div>
     
@@ -81,20 +81,26 @@
 
         let draging = false;//拖拽状态控制
         
-        // safari(iOS)支持mp4导出，chrome(Android)支持webm，可能需要转换一下
-        let mimeType = {ext:"webm",opt:{mimeType: 'video/webm', videoBitsPerSecond : bitRate}};
-            if (MediaRecorder.isTypeSupported('video/webm; codecs=vp9')) {
-                mimeType = {ext:"webm",opt:{mimeType: 'video/webm; codecs=vp9', videoBitsPerSecond : bitRate}};
-            } else  if (MediaRecorder.isTypeSupported('video/webm')) {
-                mimeType = {ext:"webm",opt:{mimeType: 'video/webm', videoBitsPerSecond : bitRate}};
-            } else if (MediaRecorder.isTypeSupported('video/mp4')) {
-                mimeType = {ext:"mp4",opt:{mimeType: 'video/mp4', videoBitsPerSecond : bitRate}};
-            } else {
-                // console.error("no suitable mimetype found for this device");
-                alert("no suitable mimetype found for this device");
-                const mimeType = {mimeType: 'video/webm'};
-            }
-         
+        // safari(iOS)支持mp4导出，部分chrome(Android)支持webm，可能需要转换一下
+        const mimeTypeList = [
+                ['video/mp4; codecs=avc1','mp4'],
+                ['video/mp4','mp4'],
+                ['video/webm; codecs=vp9','webm'],
+                ['video/webm','webm']
+            ];
+
+        const getMimeType = bitRate => {
+              const curType = mimeTypeList.find(type => MediaRecorder.isTypeSupported(type[0]));
+              if(curType !== undefined ){
+                return {ext:curType[1],opt:{mimeType: curType[0], videoBitsPerSecond : bitRate}};
+              } else {
+                console.error("设备浏览器不支持 mp4 或者 webm 视频录制");
+                return {ext:'mp4',opt:{mimeType:'video/mp4', videoBitsPerSecond : bitRate}};
+              }
+              
+        }
+
+        const mimeType =  getMimeType(bitRate);
         // 时间日期格式化
         Date.prototype.format = function(fmt){ 
             var o = { 
