@@ -1,70 +1,389 @@
-<html lang="en">
+<html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📹</text></svg>">
     <title>特斯拉行车记录仪加水印</title>
     <style>
-        div{
-            font-size: 10px;
-        } 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        h1, h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #7f8c8d;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .instructions h4 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .file-input-button {
+            display: inline-block;
+            padding: 14px 24px;
+            background: #3498db;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: none;
+            font-size: 16px;
+        }
+
+        .file-input-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .startRec {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .startRec:hover:not(:disabled) {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        }
+
+        .stopRec {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .stopRec:hover:not(:disabled) {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .info {
+            text-align: center;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-weight: 500;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+
+        .viewer {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .cvs {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #000;
+            max-height: 70vh;
+        }
+
+        .timeline-container {
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .timeLine {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #3498db 0%, #3498db var(--value, 0%), #e0e0e0 var(--value, 0%), #e0e0e0 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .timeLine::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeLine::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-controls {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .play-pause-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .play-pause-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+            text-align: center;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .github-link:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+
+        .github-icon {
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .play-pause-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+            
+            .github-icon {
+                width: 16px !important;
+                height: 16px !important;
+            }
+        }
     </style>
 </head>
-<body">
-     
-    <h3>特斯拉行车记录仪加水印 v1.1</h3>
-    <div>
-        使用步骤：<br/>
-        可以在电脑也可以在手机使用本工具。<br/>
-        如果是电脑，直接将U盘插入电脑，然后从步骤4开始看；<br/>
-        如果是手机：<br/>
-        1.根据手机类型（安卓、苹果）准备好OTG转接头。<br/>
-        2.取下行车记录仪U盘，插入转接头连上手机。<br/>
-        3.打开文件管理器确认U盘是否链接成功。<span style="color: rgb(255, 128, 0)">注意:视频文件名不要改!</span><br/>
-        4.点击「选择文件」，进入特斯拉U盘选取视频片段。特斯拉记录的视频是每个片段1分钟。<br/>
-        5.点击「开始录制」，等待录制（可以滑动进度条到对应时间点再开始）。<br/>
-        6.点击「结束录制并下载视频」完成录制。<br/>
-        7.点击浏览器的下载列表，可以看到刚才录制的视频。<br/>
-        <span style="color: rgb(255, 128, 0);">iPhone（Safari）生成的是mp4格式，部分安卓（Chrome，edge）生成的是webm，如需转换为mp4，可以搜索一些在线工具或者app，例如</span>
-        <a href="https://converter.app/webm-to-mp4/">https://converter.app/webm-to-mp4/</a>
-    </div>
-    
-    <hr color="#666666">
-    <input class="inputer" type="file" />
-    <br/>
-    <br/>
-    <button class="startRec" disabled="true">🔴录制水印视频</button>
-    <button class="stopRec" disabled="true">🟥结束录制，并下载视频</button>
-    <br/>
-    <br/>
-    <div class="info" style="color:grey;"> ⏸ 未开始录制。</div>
-    <br/>
-    <div class="viewer" style="display: none;">
-        <canvas class="cvs" style="width: 100%;"></canvas>
-        <br/>
-        <input class="timeLine" 
-               type="range" 
-               min="1"
-               max="100"
-               step="0.01"
-               value="0"
-               style="width: 100%;"
-               />
-    </div>
+<body>
+    <div class="container">
+        <header>
+            <h1>特斯拉行车记录仪加水印</h1>
+            <h3>v1.3</h3>
+        </header>
 
-    <div>
-        <img width="15px" style="margin: -3px;" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
-        <span style="line-height: 10px;"> 项目地址:</span>
-        <br/>
-        <a href="https://github.com/bigxixi/tesla-cam-timer">https://github.com/bigxixi/tesla-cam-timer</a>
+        <section class="instructions">
+            <h4>使用步骤：</h4>
+            <ol>
+                <li>可以在电脑也可以在手机使用本工具。</li>
+                <li>如果是电脑，直接将U盘插入电脑，然后从步骤4开始看；</li>
+                <li>如果是手机：
+                    <ol type="a">
+                        <li>根据手机类型（安卓、苹果）准备好OTG转接头。</li>
+                        <li>取下行车记录仪U盘，插入转接头连上手机。</li>
+                        <li>打开文件管理器确认U盘是否链接成功。</li>
+                    </ol>
+                </li>
+                <li>点击「选择视频文件」，进入特斯拉U盘选取视频片段<span class="highlight">（注意:视频文件名不要改!）</span>。特斯拉记录的视频是每个片段1分钟。</li>
+                <li>点击「🔴 开始录制水印视频」，等待录制（可以滑动进度条到对应时间点再开始）。</li>
+                <li>点击浏览器的下载列表，可以看到刚才录制的视频。</li>
+                <li><span class="highlight">iPhone（Safari）生成的是mp4格式，部分安卓（Chrome，edge）生成的是webm，如需转换为mp4，可以搜索一些在线工具或者app，例如 <a href="https://converter.app/webm-to-mp4/" target="_blank">webm转mp4工具</a></span></li>
+            </ol>
+        </section>
+
+        <section class="controls">
+            <div class="file-input-wrapper">
+                <div class="file-input-button">📁 选择视频文件</div>
+                <input class="inputer" type="file" accept="video/*" />
+            </div>
+
+            <div class="buttons">
+                <button class="startRec" disabled="true">🔴 开始录制水印视频</button>
+                <button class="stopRec" disabled="true">🟥 结束录制并下载视频</button>
+            </div>
+        </section>
+
+        <div class="info">⏸ 未开始录制。</div>
+
+        <div class="viewer">
+            <div class="video-container">
+                <canvas class="cvs"></canvas>
+            </div>
+            <div class="video-controls">
+                <button class="play-pause-btn">▶ 播放</button>
+            </div>
+            <div class="timeline-container">
+                <input class="timeLine" type="range" min="0" max="100" step="0.01" value="0" />
+            </div>
+        </div>
+
+        <footer class="footer">
+            <a href="https://github.com/bigxixi/tesla-cam-timer" class="github-link" target="_blank">
+                <img class="github-icon" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                项目地址: https://github.com/bigxixi/tesla-cam-timer
+            </a>
+        </footer>
     </div>
 
     <script>
 
-        const fps = 25;//导出的视频帧率
+        const fps = 30;//导出的视频帧率，提高到30帧以获得更流畅的效果
         const timeslice = 10;//捕获数据时间间隔
-        const bitRate = 5000000;//码率
+        const bitRate = 5000000;//码率设置为5Mbps以提高兼容性
         // 详见 https://juejin.cn/post/7005113182247190541
 
+        // 检测浏览器类型，对Safari进行特定优化
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         const inputer = document.querySelector(".inputer");
@@ -76,150 +395,259 @@
         const cvs = viewer.querySelector(".cvs");
         const ctx = cvs.getContext('2d');
         const vid = document.createElement("video");
-              vid.setAttribute("autoplay",true);
-              vid.setAttribute("playsInline",true);
+        const playPauseBtn = viewer.querySelector('.play-pause-btn');
+        // 为Safari添加特定属性以提高性能
+        if (isSafari) {
+            vid.setAttribute("autoplay", false);
+            vid.setAttribute("playsinline", true);
+            vid.setAttribute("webkit-playsinline", true);
+        } else {
+            vid.setAttribute("autoplay", true);
+        }
+        vid.setAttribute("playsInline", true);
 
         let draging = false;//拖拽状态控制
-        
+
         // safari(iOS)支持mp4导出，部分chrome(Android)支持webm，可能需要转换一下
+        // 按优先级排列编码格式，优先使用MP4格式以兼容交警app，避免使用avc1编码
         const mimeTypeList = [
-                ['video/mp4; codecs=avc1','mp4'],
-                ['video/mp4','mp4'],
-                ['video/webm; codecs=vp9','webm'],
-                ['video/webm','webm']
-            ];
+            ['video/mp4', 'mp4'],
+            ['video/mp4; codecs=h264', 'mp4'],
+            ['video/webm; codecs=vp9', 'webm'],
+            ['video/webm', 'webm']
+        ];
 
         const getMimeType = bitRate => {
-              const curType = mimeTypeList.find(type => MediaRecorder.isTypeSupported(type[0]));
-              if(curType !== undefined ){
-                return {ext:curType[1],opt:{mimeType: curType[0], videoBitsPerSecond : bitRate}};
-              } else {
+            const curType = mimeTypeList.find(type => MediaRecorder.isTypeSupported(type[0]));
+            if (curType !== undefined) {
+                // 使用更明确的选项避免编码器冲突
+                return { ext: curType[1], opt: { mimeType: curType[0], videoBitsPerSecond: bitRate } };
+            } else {
                 console.error("设备浏览器不支持 mp4 或者 webm 视频录制");
-                return {ext:'mp4',opt:{mimeType:'video/mp4', videoBitsPerSecond : bitRate}};
-              }
-              
+                // 默认使用无编解码器指定的mp4格式，让浏览器选择合适的编码器
+                return { ext: 'mp4', opt: { mimeType: 'video/mp4', videoBitsPerSecond: bitRate } };
+            }
+
         }
 
-        const mimeType =  getMimeType(bitRate);
+        const mimeType = getMimeType(bitRate);
         // 时间日期格式化
-        Date.prototype.format = function(fmt){ 
-            var o = { 
-            "M+" : this.getMonth()+1,                 //月份 
-            "d+" : this.getDate(),                    //日 
-            "h+" : this.getHours(),                   //小时 
-            "m+" : this.getMinutes(),                 //分 
-            "s+" : this.getSeconds(),                 //秒 
-            "q+" : Math.floor((this.getMonth()+3)/3), //季度 
-            "S" : this.getMilliseconds()             //毫秒 
-            }; 
-            if(/(y+)/.test(fmt)) {
-            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份 
+                "d+": this.getDate(),                    //日 
+                "h+": this.getHours(),                   //小时 
+                "m+": this.getMinutes(),                 //分 
+                "s+": this.getSeconds(),                 //秒 
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                "S": this.getMilliseconds()             //毫秒 
+            };
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
             }
-            for(var k in o) {
-            if(new RegExp("("+ k +")").test(fmt)){
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                }
             }
-            }
-            return fmt; 
+            return fmt;
         }
 
         // 利用captureStream获取canvas内容生成视频，详见
         // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/captureStream
         const allChunks = [];
-        const stream = cvs.captureStream(fps);
-        const recorder = new MediaRecorder(stream, mimeType.opt);
-                recorder.ondataavailable = e => {
-                    allChunks.push(
-                        e.data
-                    );
+        let stream;
+        let recorder;
+
+        const setupRecorder = () => {
+            try {
+                recorder = new MediaRecorder(stream, mimeType.opt);
+            } catch (error) {
+                console.warn("创建MediaRecorder时出现错误，尝试使用默认设置:", error);
+                // 如果指定了编解码器失败，尝试使用基本的mimeType
+                recorder = new MediaRecorder(stream, { mimeType: 'video/mp4', videoBitsPerSecond: bitRate });
+            }
+            
+            recorder.onstop = (e) => {
+                console.log("--录制完全结束，开始生成文件--");
+                const fullBlob = new Blob(allChunks, { type: mimeType.opt.mimeType });
+                const downloadUrl = window.URL.createObjectURL(fullBlob);
+
+                const link = document.createElement('a');
+                link.style.display = 'none';
+                link.href = downloadUrl;
+                // 生成带随机数的文件名
+                link.download = `${vidName}_watermarked_${new Date().getTime()}.${mimeType.ext}`;
+
+                document.body.appendChild(link);
+                link.click();
+
+                // 清理工作
+                setTimeout(() => {
+                    link.remove();
+                    window.URL.revokeObjectURL(downloadUrl);
+                    console.log("--下载流程结束--");
+                    // 下载完成后重置状态信息
+                    info.innerHTML = "⏸ 未开始录制。";
+                    info.style.color = "grey";
+                }, 100);
+            };
+            
+            recorder.onerror = (event) => {
+                console.error('MediaRecorder错误:', event.error);
+                // 对于特定的编码错误，我们可以忽略它，因为录制仍可继续
+                if (event.error.name !== 'EncodingError' || !event.error.message.includes('avc1')) {
+                    console.log('遇到非关键错误，录制继续');
                 }
+            };
+            
+            recorder.ondataavailable = e => {
+                allChunks.push(
+                    e.data
+                );
+            }
+        }
         let vidName = "unNamed";
         let startTime = 0;
         let recStartTime = 0;
         let recStartTimeNew = 0;
 
         //开始录制带水印视频
-        const startRecording = ()=>{
-                // 若视频停在最后一帧，则重新开始播放
-                if(vid.currentTime>=vid.duration) vid.currentTime = 0;
-                if(vid.paused) vid.play();
-        
-                info.style.color = "red";
+        const startRecording = () => {
+            // 若视频停在最后一帧，则重新开始播放
+            if (vid.currentTime >= vid.duration) vid.currentTime = 0;
+            if (vid.paused) vid.play();
 
-                recorder.start(timeslice);
-                stopRec.disabled = false;
-                startRec.disabled = true;
-                recStartTime = vid.currentTime;
-                recStartTimeNew = startTime+recStartTime*1000;
-                console.log("--录制开始--");
-                
+            info.style.color = "red";
+
+            // 清空数据，为下一次录制做准备
+            allChunks.length = 0;
+            
+            // 如果recorder不存在或状态不是inactive，需要重新设置
+            if (!recorder || recorder.state === 'inactive') {
+                setupRecorder();
+            } else if (recorder.state === 'paused') {
+                // 如果recorder只是暂停，直接恢复
+                recorder.resume();
+            } else {
+                // 如果recorder正在录制，先停止之前的录制
+                recorder.stop();
+                setupRecorder();
             }
+            
+            recorder.start(timeslice);
+            stopRec.disabled = false;
+            startRec.disabled = true;
+            recStartTime = vid.currentTime;
+            recStartTimeNew = startTime + recStartTime * 1000;
+            
+            // 立即更新状态信息
+            info.innerHTML = `录制开始时间：${new Date(recStartTimeNew).format("yyyy-MM-dd hh:mm:ss")},已录制${(vid.currentTime - recStartTime).toFixed(2)}s`;
+            
+            console.log("--录制开始--");
+
+        }
 
         //保存录制的视频
-        const stopAndblobDownload = ()=>{
-                recorder.stop();
-                vid.pause();
-                stopRec.disabled = true;
-                startRec.disabled = false;
+        const stopAndblobDownload = () => {
+            recorder.stop(); // 这一步会触发上面的 recorder.onstop
+            vid.pause();
+            stopRec.disabled = true;
+            startRec.disabled = false;
 
-                info.innerHTML = "录制停止。"
-                info.style.color = "grey";
+            info.innerHTML = "录制停止，正在处理文件...";
+            info.style.color = "grey";
+        }
 
-                console.log("--录制流程结束，开始下载流程--");
+        startRec.addEventListener("click", startRecording);
+        stopRec.addEventListener("click", stopAndblobDownload);
 
-                const fullBlob = new Blob(allChunks);
-                const downloadUrl = window.URL.createObjectURL(fullBlob);
 
-                const link = document.createElement('a');
-                      link.style.display = 'none';
-                      link.href = downloadUrl;
-                      link.download = `${vidName}_${Math.random().toFixed(10)*10000000000}.${mimeType.ext}`;
-
-                document.body.appendChild(link);
-                link.click();
-
-                setTimeout(() => {
-                    link.remove();
-                    allChunks.length = 0;
-                    console.log("--下载流程结束--");
-                }, 100);
-                
+        vid.addEventListener('ended', () => {
+            // 只有在正在录制的状态下，才触发自动停止
+            if (recorder.state === "recording") {
+                console.log("检测到视频播放结束，自动停止录制...");
+                stopAndblobDownload();
             }
-
-        startRec.addEventListener("click",startRecording);
-        stopRec.addEventListener("click",stopAndblobDownload);
-
+        });
 
         // 播放原视频，绘制到canvas上，并添加时间码水印
-        const renderLoop = ()=>{
-                    requestAnimationFrame(renderLoop);
+        const renderLoop = () => {
+            // 更新时间轴的视觉效果
+            if (vid.duration && vid.duration != 0) {
+                const progress = (vid.currentTime / vid.duration) * 100;
+                timeLine.style.setProperty('--value', `${progress}%`);
+            }
+            
+            // 确保在录制过程中canvas尺寸保持不变
+            if (recorder && recorder.state === "recording") {
+                // 录制时保持固定的canvas尺寸，避免触发编码器错误
+            } else {
+                // 非录制状态下，如果需要可以根据视频调整canvas（但目前我们不需要）
+            }
+            
+            ctx.clearRect(0, 0, cvs.width, cvs.height);
+            // 使用高质量图像绘制设置
+            ctx.imageSmoothingEnabled = true;
+            // 对Safari浏览器使用不同的图像平滑设置以提高性能
+            if (isSafari) {
+                ctx.imageSmoothingQuality = 'medium'; // Safari使用medium以平衡质量和性能
+            } else {
+                ctx.imageSmoothingQuality = 'high';
+            }
+            ctx.drawImage(vid, 0, 0, cvs.width, cvs.height);
+            
+            // 优化时间戳绘制，减少重复计算
+            const curTime = new Date(startTime + vid.currentTime * 1000).format("yyyy-MM-dd hh:mm:ss");
+            
+            // 仅在需要时测量文本尺寸（避免在每个帧上重复测量相同文本）
+            let textMetrics;
+            if (!window.cachedTextMetrics || window.cachedTextMetrics.text !== curTime) {
+                textMetrics = ctx.measureText(curTime);
+                window.cachedTextMetrics = {
+                    text: curTime,
+                    width: textMetrics.width,
+                    height: textMetrics.fontBoundingBoxAscent + textMetrics.fontBoundingBoxDescent
+                };
+            } else {
+                textMetrics = window.cachedTextMetrics;
+            }
+            
+            const tW = textMetrics.width;
+            const tH = textMetrics.height;
 
-                    ctx.clearRect(0,0,cvs.width,cvs.height);
-                    ctx.drawImage(vid, 0, 0,cvs.width,cvs.height);
-                    const curTime = new Date(startTime+vid.currentTime*1000).format("yyyy-MM-dd hh:mm:ss");
-                    const curTextBBox = ctx.measureText(curTime);
-                    const tW = curTextBBox.width;
-                    const tH = curTextBBox.fontBoundingBoxAscent + curTextBBox.fontBoundingBoxDescent;
+            // const tX = (cvs.width - tW)/2;//居中
+            const tX = cvs.width - tW - cvs.width / 40;//靠右，调整边距
+            // const tX = cvs.width/20;//靠左
 
-                    // const tX = (cvs.width - tW)/2;//居中
-                    const tX = cvs.width - tW - cvs.width/50;//靠右
-                    // const tX = cvs.width/20;//靠左
+            const tY = cvs.height - cvs.width / 25; // 调整水印位置，使其更高一些
 
-                    const tY = cvs.height - cvs.width/45;
+            // 优化矩形和文本绘制，对Safari进行性能优化
+            if (isSafari) {
+                // Safari下使用更简单的绘制方式
+                ctx.fillStyle = 'rgba(0,0,0,0.4)';
+                ctx.fillRect(tX - 4, tY - textMetrics.fontBoundingBoxAscent - 4, tW + 8, tH + 8);
+                
+                ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                ctx.fillText(curTime, tX, tY);
+            } else {
+                // 其他浏览器保持原有绘制方式
+                ctx.fillStyle = 'rgba(0,0,0,0.2)';
+                ctx.fillRect(tX, tY - textMetrics.fontBoundingBoxAscent, tW, tH);
 
-                    ctx.fillStyle = 'rgba(0,0,0,0.2)';
-                    ctx.fillRect(tX,tY - curTextBBox.fontBoundingBoxAscent,tW,tH);
+                ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                ctx.fillText(curTime, tX, tY);
+            }
 
-                    ctx.fillStyle = 'rgba(255,255,255,0.5)';
-                    ctx.fillText(curTime, tX, tY);
+            if (!draging && vid.duration && vid.duration != 0) timeLine.value = 100 * (vid.currentTime / vid.duration);
+            if (recorder.state == "recording") info.innerHTML = `录制开始时间：${new Date(recStartTimeNew).format("yyyy-MM-dd hh:mm:ss")},已录制${(vid.currentTime - recStartTime).toFixed(2)}s`;
 
-                    if(!draging && vid.duration && vid.duration !=0) timeLine.value = 100*(vid.currentTime/vid.duration);
-                    if(recorder.state == "recording") info.innerHTML = `录制开始时间：${new Date(recStartTimeNew).format("yyyy-MM-dd hh:mm:ss")},已录制${(vid.currentTime - recStartTime).toFixed(2)}s`;
-                    
-                }
+            // 使用requestAnimationFrame继续循环
+            requestAnimationFrame(renderLoop);
+        }
 
         // 选择视频后开始播放
-        const inputVid = ()=> {
+        const inputVid = () => {
             // todo:
             // 文件名合法性检测
 
@@ -227,10 +655,10 @@
             info.style.color = "grey";
 
             const file = inputer.files[0];
-            vidName = file.name.substring(0,file.name.lastIndexOf("."));
+            vidName = file.name.substring(0, file.name.lastIndexOf("."));
 
             const url = URL.createObjectURL(file);
-            const t1 = file.name.slice(0,19).split("_");
+            const t1 = file.name.slice(0, 19).split("_");
             const t2 = t1[0].split("-");
             const t3 = t1[1].split("-");
 
@@ -239,46 +667,86 @@
 
             vid.src = url;
             // vid.play();
-            if(vid.paused) vid.play();
+            if (vid.paused) vid.play();
 
-            vid.addEventListener("loadedmetadata",()=>{
+            vid.addEventListener("loadedmetadata", () => {
 
                 cvs.width = vid.videoWidth;
                 cvs.height = vid.videoHeight;
 
-                viewer.style.display = "block";
+                // 在这里创建stream以确保使用正确的canvas尺寸
+                stream = cvs.captureStream(fps);
                 
+                // 现在可以设置recorder了
+                setupRecorder();
+
+                viewer.style.display = "block";
+
                 startRec.disabled = false;
 
-                if(isMobile){
-                    const touchToPlay = ()=>{
+                if (isMobile) {
+                    const touchToPlay = () => {
                         // vid.play();
-                        if(vid.paused) vid.play();
-                        cvs.removeEventListener("touchstart",touchToPlay);
+                        if (vid.paused) vid.play();
+                        cvs.removeEventListener("touchstart", touchToPlay);
                     }
 
-                    cvs.addEventListener("touchstart",touchToPlay)
+                    cvs.addEventListener("touchstart", touchToPlay)
                 }
 
-                ctx.font = `${cvs.width/30}px Arial`;
-                recStartTimeNew = startTime+recStartTime*1000;
+                // 设置固定的字体大小，避免在录制过程中变化
+                ctx.font = `${cvs.width / 30}px Arial`;
+                ctx.textBaseline = 'top'; // 确保文本基线一致
+                
+                recStartTimeNew = startTime + recStartTime * 1000;
+
+                // 初始化播放/暂停按钮状态
+                updatePlayPauseBtn();
 
                 requestAnimationFrame(renderLoop);
 
             })
-            
+
         }
 
-        inputer.addEventListener("change",inputVid);
+        inputer.addEventListener("change", inputVid);
+
+        // 更新播放/暂停按钮的显示
+        const updatePlayPauseBtn = () => {
+            if (vid.paused) {
+                playPauseBtn.innerHTML = "▶ 播放";
+            } else {
+                playPauseBtn.innerHTML = "⏸ 暂停";
+            }
+        };
+
+        // 播放/暂停按钮事件监听
+        playPauseBtn.addEventListener("click", () => {
+            if (vid.paused) {
+                vid.play();
+            } else {
+                vid.pause();
+            }
+            updatePlayPauseBtn();
+        });
+
+        // 监听视频播放状态变化，自动更新按钮
+        vid.addEventListener("play", () => {
+            updatePlayPauseBtn();
+        });
+
+        vid.addEventListener("pause", () => {
+            updatePlayPauseBtn();
+        });
 
         // 进度条控制
-        timeLine.addEventListener(isMobile?"touchstart":"mousedown",e=>{draging=true;})
-        timeLine.addEventListener(isMobile?"touchend":"mouseup",e=>{draging=false;})
-        timeLine.addEventListener("change",()=>{
-            vid.currentTime = vid.duration*timeLine.value/timeLine.max;
-            if(vid.paused) vid.play();
+        timeLine.addEventListener(isMobile ? "touchstart" : "mousedown", e => { draging = true; })
+        timeLine.addEventListener(isMobile ? "touchend" : "mouseup", e => { draging = false; })
+        timeLine.addEventListener("change", () => {
+            vid.currentTime = vid.duration * timeLine.value / timeLine.max;
+            if (vid.paused) vid.play();
         });
- 
     </script>
-</body>
+    </body>
+
 </html>
